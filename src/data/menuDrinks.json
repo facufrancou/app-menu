@@ -8,7 +8,7 @@
     "avalible": true
 },
 {
-    "id": 1,
+    "id": 2,
     "title": "prueba",
     "price": 100,
     "description": "comida rica",
@@ -16,7 +16,7 @@
     "avalible": true
 },
 {
-    "id": 1,
+    "id": 3,
     "title": "prueba",
     "price": 100,
     "description": "comida rica",
@@ -24,7 +24,7 @@
     "avalible": true
 },
 {
-    "id": 1,
+    "id": 4,
     "title": "prueba",
     "price": 100,
     "description": "comida rica",

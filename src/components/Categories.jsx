@@ -12,10 +12,11 @@ const Categories = () => {
 
             <p>Acá podes elegir que comer o que tomar...</p>
 
-            <div className='container col-md-3'>
-                <Button variant='success'>Menú de comidas</Button>
+            <div className='container' >
+                <Button className='container col-md-12' variant='success'>Menú de comidas</Button>
                 <br />
-                <Button variant='success'>Menú de bebidas</Button>
+                <br />
+                <Button className='container col-md-12' variant='success'>Menú de bebidas</Button>
             </div>
             
         </main>
