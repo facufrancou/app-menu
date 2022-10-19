@@ -1,0 +1,34 @@
+[
+{
+    "id": 1,
+    "title": "prueba",
+    "price": 100,
+    "description": "comida rica",
+    "image": "default",
+    "avalible": true
+},
+{
+    "id": 1,
+    "title": "prueba",
+    "price": 100,
+    "description": "comida rica",
+    "image": "default",
+    "avalible": true
+},
+{
+    "id": 1,
+    "title": "prueba",
+    "price": 100,
+    "description": "comida rica",
+    "image": "default",
+    "avalible": true
+},
+{
+    "id": 1,
+    "title": "prueba",
+    "price": 100,
+    "description": "comida rica",
+    "image": "default",
+    "avalible": true
+}
+]
