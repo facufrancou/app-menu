@@ -4,7 +4,17 @@ import Button from 'react-bootstrap/Button';
 
 import FoodsGroup from './FoodsGroup';
 
+import MenuCard from './menuCard';
 
+
+/* let datafoods = require('../../data/menuFood')
+
+function filtrar(parametro){
+    datafoods.filter((data)=>{
+        return data.categorie === parametro
+    })
+}
+ */
 
 const Foods = () => {
 
@@ -19,19 +29,20 @@ const Foods = () => {
             <div className='foods-page-content'>
 
                 <div className="foods-group">
-                    <FoodsGroup title= 'Sandwiches' />
+                    <FoodsGroup title='Sandwiches' />
+                    <MenuCard title="comida" price="1" description="descripcion"/>
                 </div>
 
                 <div className="foods-group">
-                    <FoodsGroup title= 'Papas' />
+                    <FoodsGroup title='Papas' />
                 </div>
 
                 <div className="foods-group">
-                    <FoodsGroup title= 'Pizzas' />
+                    <FoodsGroup title='Pizzas' />
                 </div>
 
                 <div className="foods-group">
-                    <FoodsGroup title= 'Burgers' />
+                    <FoodsGroup title='Burgers' />
                 </div>
 
             </div>

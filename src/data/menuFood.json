@@ -1,0 +1,110 @@
+[
+{
+    "id": 1,
+    "title": "sandwich 1",
+    "price": 100,
+    "description": "comida rica",
+    "image": "default",
+    "categorie" :"sandwich",
+    "avalible": true
+},
+{
+    "id": 1,
+    "title": "sandwich 2",
+    "price": 100,
+    "description": "comida rica",
+    "image": "default",
+    "categorie" :"sandwich",
+    "avalible": true
+},
+{
+    "id": 1,
+    "title": "sandwich 3",
+    "price": 100,
+    "description": "comida rica",
+    "image": "default",
+    "categorie" :"sandwich",
+    "avalible": true
+},
+{
+    "id": 2,
+    "title": "papas",
+    "price": 100,
+    "description": "comida rica",
+    "image": "default",
+    "categorie" :"papas",
+    "avalible": true
+},
+{
+    "id": 2,
+    "title": "papas 2",
+    "price": 100,
+    "description": "comida rica",
+    "image": "default",
+    "categorie" :"papas",
+    "avalible": true
+},
+{
+    "id": 2,
+    "title": "papas 3",
+    "price": 100,
+    "description": "comida rica",
+    "image": "default",
+    "categorie" :"papas",
+    "avalible": true
+},
+{
+    "id": 3,
+    "title": "pizza 1",
+    "price": 100,
+    "description": "comida rica",
+    "image": "default",
+    "categorie" :"pizza",
+    "avalible": true
+},
+{
+    "id": 3,
+    "title": "pizza 2",
+    "price": 100,
+    "description": "comida rica",
+    "image": "default",
+    "categorie" :"pizza",
+    "avalible": true
+},
+{
+    "id": 3,
+    "title": "pizza 3",
+    "price": 100,
+    "description": "comida rica",
+    "image": "default",
+    "categorie" :"pizza",
+    "avalible": true
+},
+{
+    "id": 4,
+    "title": "burger 1",
+    "price": 100,
+    "description": "comida rica",
+    "image": "default",
+    "categorie" :"burger",
+    "avalible": true
+},
+{
+    "id": 4,
+    "title": "burger 2",
+    "price": 100,
+    "description": "comida rica",
+    "image": "default",
+    "categorie" :"burger",
+    "avalible": true
+},
+{
+    "id": 4,
+    "title": "burger 3",
+    "price": 100,
+    "description": "comida rica",
+    "image": "default",
+    "categorie" :"burger",
+    "avalible": true
+}
+]
