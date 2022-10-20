@@ -7,14 +7,36 @@ import FoodsGroup from './FoodsGroup';
 import MenuCard from './menuCard';
 
 
-/* let datafoods = require('../../data/menuFood')
+let datafoods = require('../../data/menuFood')
 
-function filtrar(parametro){
-    datafoods.filter((data)=>{
-        return data.categorie === parametro
+let categories = require('../../data/categories.json')
+
+/* let sandwich = datafoods.filter((data)=>{
+    return data.categorie === "Sandwiches"
+}) 
+
+let papas = datafoods.filter((data)=>{
+    return data.categorie === "Papas" 
+})
+
+let pizza = datafoods.filter((data)=>{
+    return data.categorie === "Pizzas"
+})
+
+let burger = datafoods.filter((data)=>{
+    return data.categorie === "Burgers"
+})
+*/
+
+/* function filtrar(categoria) {
+    let filtrado = datafoods.filter((food) => {
+        return food.categorie === categoria
     })
-}
- */
+    return filtrado
+} */
+
+
+
 
 const Foods = () => {
 
@@ -27,24 +49,11 @@ const Foods = () => {
             </div>
 
             <div className='foods-page-content'>
-
-                <div className="foods-group">
-                    <FoodsGroup title='Sandwiches' />
-                    <MenuCard title="comida" price="1" description="descripcion"/>
-                </div>
-
-                <div className="foods-group">
-                    <FoodsGroup title='Papas' />
-                </div>
-
-                <div className="foods-group">
-                    <FoodsGroup title='Pizzas' />
-                </div>
-
-                <div className="foods-group">
-                    <FoodsGroup title='Burgers' />
-                </div>
-
+                {
+                    categories.map((categoria) => {
+                        return <div className='foods-group'><FoodsGroup title={categoria} /></div>
+                    })
+                }
             </div>
 
             <div className='foods-checkout-button'>

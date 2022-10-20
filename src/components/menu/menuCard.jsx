@@ -1,13 +1,21 @@
 import React from 'react';
 
-const MenuCard = ({title, price, description})=>{
- return (
-    <>
-        <h3>{ title }</h3>
-        <p>{ price }</p>
-        <p>{ description }</p>
-    </>
- )
+import '../../styles/menuCard.css';
+
+
+
+const MenuCard = ({ title, price, description }) => {
+    return (
+        <>
+            <div>
+                <h4>{title}</h4>
+                <p>{price}</p>
+            </div>
+            <div>
+                <p>{description}</p>
+            </div>
+        </>
+    )
 }
 
 export default MenuCard;
