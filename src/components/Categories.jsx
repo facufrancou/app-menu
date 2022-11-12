@@ -6,7 +6,7 @@ const Categories = () => {
 
     return (
         
-        <main className=' categories'>
+        <main className='categories'>
 
             <h2>Hola nombre</h2>
 

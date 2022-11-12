@@ -1,110 +1,173 @@
 [
-{
-    "id": 1,
-    "title": "sandwich 1",
-    "price": 100,
-    "description": "comida rica",
-    "image": "default",
-    "categorie" :"Sandwiches",
-    "avalible": true
-},
-{
-    "id": 1,
-    "title": "sandwich 2",
-    "price": 100,
-    "description": "comida rica",
-    "image": "default",
-    "categorie" :"Sandwiches",
-    "avalible": true
-},
-{
-    "id": 1,
-    "title": "sandwich 3",
-    "price": 100,
-    "description": "comida rica",
-    "image": "default",
-    "categorie" :"Sandwiches",
-    "avalible": true
-},
-{
-    "id": 2,
-    "title": "papas",
-    "price": 100,
-    "description": "comida rica",
-    "image": "default",
-    "categorie" :"Papas",
-    "avalible": true
-},
-{
-    "id": 2,
-    "title": "papas 2",
-    "price": 100,
-    "description": "comida rica",
-    "image": "default",
-    "categorie" :"Papas",
-    "avalible": true
-},
-{
-    "id": 2,
-    "title": "papas 3",
-    "price": 100,
-    "description": "comida rica",
-    "image": "default",
-    "categorie" :"Papas",
-    "avalible": true
-},
-{
-    "id": 3,
-    "title": "pizza 1",
-    "price": 100,
-    "description": "comida rica",
-    "image": "default",
-    "categorie" :"Pizzas",
-    "avalible": true
-},
-{
-    "id": 3,
-    "title": "pizza 2",
-    "price": 100,
-    "description": "comida rica",
-    "image": "default",
-    "categorie" :"Pizzas",
-    "avalible": true
-},
-{
-    "id": 3,
-    "title": "pizza 3",
-    "price": 100,
-    "description": "comida rica",
-    "image": "default",
-    "categorie" :"Pizzas",
-    "avalible": true
-},
-{
-    "id": 4,
-    "title": "burger 1",
-    "price": 100,
-    "description": "comida rica",
-    "image": "default",
-    "categorie" :"Burgers",
-    "avalible": true
-},
-{
-    "id": 4,
-    "title": "burger 2",
-    "price": 100,
-    "description": "comida rica",
-    "image": "default",
-    "categorie" :"Burgers",
-    "avalible": true
-},
-{
-    "id": 4,
-    "title": "burger 3",
-    "price": 100,
-    "description": "comida rica",
-    "image": "default",
-    "categorie" :"Burgers",
-    "avalible": true
-}
+    {
+        "id": 1,
+        "title": "Del Campo",
+        "price": 100,
+        "description": "comida rica",
+        "image": "default",
+        "categorie" :"sandwiches",
+        "available": true
+    },
+    {
+        "id": 2,
+        "title": "Lomito",
+        "price": 100,
+        "description": "comida rica",
+        "image": "default",
+        "categorie" :"sandwiches",
+        "available": true
+    },
+    {
+        "id": 3,
+        "title": "Jon Snow",
+        "price": 100,
+        "description": "comida rica",
+        "image": "default",
+        "categorie" :"sandwiches",
+        "available": true
+    },
+    {
+        "id": 4,
+        "title": "Milanesa",
+        "price": 100,
+        "description": "comida rica",
+        "image": "default",
+        "categorie" :"sandwiches",
+        "available": true
+    },
+    {
+        "id": 5,
+        "title": "Papas Fritas",
+        "price": 100,
+        "description": "comida rica",
+        "image": "default",
+        "categorie" :"papas",
+        "available": true
+    },
+    {
+        "id": 6,
+        "title": "Cheddar",
+        "price": 100,
+        "description": "comida rica",
+        "image": "default",
+        "categorie" :"papas",
+        "available": true
+    },
+    {
+        "id": 7,
+        "title": "Pulled Pork",
+        "price": 100,
+        "description": "comida rica",
+        "image": "default",
+        "categorie" :"papas",
+        "available": true
+    },
+    {
+        "id": 8,
+        "title": "Revueltas",
+        "price": 100,
+        "description": "comida rica",
+        "image": "default",
+        "categorie" :"papas",
+        "available": true
+    },
+    {
+        "id": 9,
+        "title": "Mozzarella",
+        "price": 100,
+        "description": "comida rica",
+        "image": "default",
+        "categorie" :"pizzas",
+        "available": true
+    },
+    {
+        "id": 10,
+        "title": "Napolitana",
+        "price": 100,
+        "description": "comida rica",
+        "image": "default",
+        "categorie" :"pizzas",
+        "available": true
+    },
+    {
+        "id": 11,
+        "title": "Especial",
+        "price": 100,
+        "description": "comida rica",
+        "image": "default",
+        "categorie" :"pizzas",
+        "available": true
+    },
+    {
+        "id": 12,
+        "title": "Rúcula",
+        "price": 100,
+        "description": "comida rica",
+        "image": "default",
+        "categorie" :"pizzas",
+        "available": true
+    },
+    {
+        "id": 13,
+        "title": "Genovesa",
+        "price": 100,
+        "description": "comida rica",
+        "image": "default",
+        "categorie" :"pizzas",
+        "available": true
+    },
+    {
+        "id": 14,
+        "title": "Pollo",
+        "price": 100,
+        "description": "comida rica",
+        "image": "default",
+        "categorie" :"pizzas",
+        "available": true
+    },
+    {
+        "id": 15,
+        "title": "Carbonara",
+        "price": 100,
+        "description": "comida rica",
+        "image": "default",
+        "categorie" :"pizzas",
+        "available": true
+    },
+    {
+        "id": 16,
+        "title": "Floki",
+        "price": 100,
+        "description": "comida rica",
+        "image": "default",
+        "categorie" :"burgers",
+        "available": true
+    },
+    {
+        "id": 17,
+        "title": "Ragnar",
+        "price": 100,
+        "description": "comida rica",
+        "image": "default",
+        "categorie" :"burgers",
+        "available": true
+    },
+    {
+        "id": 18,
+        "title": "Pinkman",
+        "price": 100,
+        "description": "comida rica",
+        "image": "default",
+        "categorie" :"burgers",
+        "available": true
+    },
+    {
+        "id": 19,
+        "title": "Lannister",
+        "price": 100,
+        "description": "comida rica",
+        "image": "default",
+        "categorie" :"burgers",
+        "available": true
+    }
 ]
