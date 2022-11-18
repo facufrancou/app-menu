@@ -72,8 +72,8 @@ const Home = () => {
 };
 
 const validate = (name, table) => {
-  if (name === "") return "Tienes que ingresar un nombre para continuar";
-  if (table === "" ?? table === isNaN) return "Tienes que ingresar un número de mesa para continuar";
+  if (name == "") return "Tienes que ingresar un nombre para continuar";
+  if (table == "" ?? table == isNaN) return "Tienes que ingresar un número de mesa para continuar";
 };
 
 export default Home;

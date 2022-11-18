@@ -33,7 +33,7 @@ let burger = datafoods.filter((data)=>{
 
 
 
-const Foods = () => {
+const Foods = ({name}) => {
 
     return (
 
@@ -45,8 +45,8 @@ const Foods = () => {
 
             <div className='foods-page-content'>
                 {
-                    categories.map( categoria => {
-                        return <div className='foods-group'><FoodsGroup title={ categoria } /></div>
+                    categories.map( category => {
+                        return <div key={category} className='foods-group'><FoodsGroup title={ category } /></div>
                     })
                 }
             </div>

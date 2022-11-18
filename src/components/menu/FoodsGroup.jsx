@@ -28,10 +28,10 @@ const FoodsGroup = ({ title }) => {
             <h2 style={{ textTransform: 'uppercase' }}>{ title }</h2>
 
             <ul style={{ listStyle: 'none', padding: 0 }}>
-                { foodsFilter.map( ({ title, id }) => {
+                { foodsFilter.map( (food) => {
                     return (
-                        <li key={ id } className='item-food'>
-                            <h4>{ title }</h4>
+                        <li key={ food.id } className='item-food'>
+                            <h4>{ food.title }</h4>
                             <div className='food-amount'>
                                 <i className="fa-solid fa-minus" style={{ cursor: 'pointer' }} /* onClick={ resProduct } */></i>
                                 <p className='food-amount-number'>{ quantity }</p>
