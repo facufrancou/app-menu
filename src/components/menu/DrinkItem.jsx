@@ -11,7 +11,7 @@ const DrinkItem = ({ title, id }) => {
     const [ modalShow, setModalShow ] = useState( false );
 
     useEffect(() => {
-        let arrayCart = localStorage.getItem('cart');
+        let arrayCart = localStorage.getItem('cartDrinks');
     
         arrayCart = arrayCart ? JSON.parse( arrayCart ) : [];
     
@@ -30,7 +30,7 @@ const DrinkItem = ({ title, id }) => {
                 quantity: quantity - 1
             }
     
-            let arrayExisting = localStorage.getItem('cart');
+            let arrayExisting = localStorage.getItem('cartDrinks');
             
             arrayExisting = arrayExisting ? JSON.parse( arrayExisting ) : [];
     
@@ -45,7 +45,7 @@ const DrinkItem = ({ title, id }) => {
                 arrayExisting.push( item );
             }
     
-            localStorage.setItem( 'cart', JSON.stringify( arrayExisting ) );
+            localStorage.setItem( 'cartDrinks', JSON.stringify( arrayExisting ) );
         }
 
 
@@ -60,7 +60,7 @@ const DrinkItem = ({ title, id }) => {
             quantity: quantity + 1
         }
 
-        let arrayExisting = localStorage.getItem('cart');
+        let arrayExisting = localStorage.getItem('cartDrinks');
         
         arrayExisting = arrayExisting ? JSON.parse( arrayExisting ) : [];
 
@@ -75,7 +75,7 @@ const DrinkItem = ({ title, id }) => {
             arrayExisting.push( item );
         }
 
-        localStorage.setItem( 'cart', JSON.stringify( arrayExisting ) );
+        localStorage.setItem( 'cartDrinks', JSON.stringify( arrayExisting ) );
 
     }
 
