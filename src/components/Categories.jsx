@@ -1,28 +1,46 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
+
 import { useNavigate } from "react-router-dom";
 
 import Button from 'react-bootstrap/Button';
 
 const Categories = () => {
+
+    let [ nombre, setNombre ] = useState( false );
+
+    useEffect(() => {
+
+        let cliente = localStorage.getItem('cliente');
+
+        cliente = JSON.parse( cliente );
+
+        setNombre( cliente.nombre );
+
+    }, []);
+
     const navigate = useNavigate();
-    const nextPage = () => {
+
+    const nextPageFoods = () => {
         navigate("/foods");
     };
-    
+
+    const nextPageDrinks = () => {
+        navigate("/drinks");
+    };
 
     return (
         
-        <main className='categories'>
+        <main className='categories' style={{ height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
 
-            <h2>Hola nombre</h2>
+            <h2>Hola { nombre }</h2>
 
             <p>Acá podes elegir que comer o que tomar...</p>
 
             <div className='container' >
-                <Button onClick={nextPage} className='container col-md-12' variant='success'>Menú de comidas</Button>
+                <Button onClick={ nextPageFoods } className='container col-md-12' variant='warning'>Menú de comidas</Button>
                 <br />
                 <br />
-                <Button className='container col-md-12' variant='success'>Menú de bebidas</Button>
+                <Button onClick={ nextPageDrinks } className='container col-md-12' variant='warning'>Menú de bebidas</Button>
             </div>
             
         </main>
