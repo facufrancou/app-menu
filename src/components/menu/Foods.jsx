@@ -4,36 +4,10 @@ import Button from 'react-bootstrap/Button';
 
 import FoodsGroup from './FoodsGroup';
 
-let categories = require('../../data/categories.json')
-
-/* let sandwich = datafoods.filter((data)=>{
-    return data.categorie === "Sandwiches"
-}) 
-
-let papas = datafoods.filter((data)=>{
-    return data.categorie === "Papas" 
-})
-
-let pizza = datafoods.filter((data)=>{
-    return data.categorie === "Pizzas"
-})
-
-let burger = datafoods.filter((data)=>{
-    return data.categorie === "Burgers"
-})
-*/
-
-/* function filtrar(categoria) {
-    let filtrado = datafoods.filter((food) => {
-        return food.categorie === categoria
-    })
-    return filtrado
-} */
+let categories = require('../../data/categoriesFoods.json')
 
 
-
-
-const Foods = ({name}) => {
+const Foods = () => {
 
     return (
 
@@ -46,7 +20,7 @@ const Foods = ({name}) => {
             <div className='foods-page-content'>
                 {
                     categories.map( category => {
-                        return <div key={category} className='foods-group'><FoodsGroup title={ category } /></div>
+                        return <div key={ category } className='foods-group'><FoodsGroup title={ category } /></div>
                     })
                 }
             </div>
