@@ -2,7 +2,7 @@ import FoodItem from './FoodItem';
 
 import '../../styles/foodsGroup.css';
 
-let dataFoods = require('../../data/menuFood.json');
+let dataFoods = require('../../data/menuFoods.json');
 
 
 const FoodsGroup = ({ title }) => {
