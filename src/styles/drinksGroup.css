@@ -1,3 +1,11 @@
+.drinks-checkout-button {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
 .item-drink {
     padding: 0.75rem 1rem !important;
     display: flex !important;
