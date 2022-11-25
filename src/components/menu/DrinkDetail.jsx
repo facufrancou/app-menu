@@ -1,19 +1,8 @@
-import { useState } from 'react';
-
 import Modal from 'react-bootstrap/Modal';
 
 import coctel from "../../assets/coctel.jpg";
 
 const DrinkDetail = ( props ) => {
-
-    const [ quantity, setQuantity ] = useState( 0 );
-
-    let resQuantity = () => {
-        setQuantity( quantity - 1 );
-    }
-    let sumQuantity = () => {
-        setQuantity( quantity + 1 );
-    }
 
     return (
 
@@ -38,9 +27,9 @@ const DrinkDetail = ( props ) => {
                 <div className='modal-price-box'>
                     <p className='modal-price'>Precio: $10000</p>
                     <div className='modal-drink-amount'>
-                        <i className="fa-solid fa-minus" style={{ cursor: 'pointer' }} onClick={ resQuantity } />
-                        <p className='modal-drink-amount-number'>{ quantity }</p>
-                        <i className="fa-solid fa-plus" style={{ cursor: 'pointer' }} onClick={ sumQuantity } />
+                        <i className="fa-solid fa-minus" style={{ cursor: 'pointer' }} onClick={ props.resQuantity } />
+                        <p className='modal-drink-amount-number'>{ props.quantity }</p>
+                        <i className="fa-solid fa-plus" style={{ cursor: 'pointer' }} onClick={ props.sumQuantity } />
                     </div>
                 </div>
             </Modal.Footer>

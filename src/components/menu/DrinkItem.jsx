@@ -1,22 +1,82 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Button from 'react-bootstrap/Button';
 
 import DrinkDetail from './DrinkDetail';
 
-const DrinkItem = ({ title }) => {
+const DrinkItem = ({ title, id }) => {
 
     const [ quantity, setQuantity ] = useState( 0 );
 
     const [ modalShow, setModalShow ] = useState( false );
 
-    let resQuantity = ( event ) => {
-        event.preventDefault();
-        setQuantity( quantity - 1 );
+    useEffect(() => {
+        let arrayCart = localStorage.getItem('cart');
+    
+        arrayCart = arrayCart ? JSON.parse( arrayCart ) : [];
+    
+        let itemSelected = arrayCart ? arrayCart.find( itemArray => itemArray.id === id ) : null;
+    
+        itemSelected = itemSelected ? setQuantity( itemSelected.quantity ) : 0;
+    }, []);
+
+    let resQuantity = () => {
+
+        if ( quantity > 0 ) {
+            setQuantity( quantity - 1 );
+    
+            let item = {
+                id: id,
+                quantity: quantity - 1
+            }
+    
+            let arrayExisting = localStorage.getItem('cart');
+            
+            arrayExisting = arrayExisting ? JSON.parse( arrayExisting ) : [];
+    
+            if( arrayExisting.find( itemArray => itemArray.id === item.id ) ) {
+                arrayExisting.map( itemArray => {
+                    if ( itemArray.id === item.id ) {
+                        return itemArray.quantity -= 1;
+                    }
+                    return itemArray.quantity;
+                })
+            } else {
+                arrayExisting.push( item );
+            }
+    
+            localStorage.setItem( 'cart', JSON.stringify( arrayExisting ) );
+        }
+
+
     }
-    let sumQuantity = ( event ) => {
-        event.preventDefault();
+
+    let sumQuantity = () => {
+
         setQuantity( quantity + 1 );
+        
+        let item = {
+            id: id,
+            quantity: quantity + 1
+        }
+
+        let arrayExisting = localStorage.getItem('cart');
+        
+        arrayExisting = arrayExisting ? JSON.parse( arrayExisting ) : [];
+
+        if( arrayExisting.find( itemArray => itemArray.id === item.id ) ) {
+            arrayExisting.map( itemArray => {
+                if ( itemArray.id === item.id ) {
+                    return itemArray.quantity += 1;
+                }
+                return itemArray.quantity;
+            })
+        } else {
+            arrayExisting.push( item );
+        }
+
+        localStorage.setItem( 'cart', JSON.stringify( arrayExisting ) );
+
     }
 
     return (
@@ -38,7 +98,10 @@ const DrinkItem = ({ title }) => {
                 show={ modalShow }
                 onHide={() => setModalShow( false )}
                 title={ title }
+                id={ id }
                 quantity={ quantity }
+                resQuantity={ resQuantity }
+                sumQuantity={ sumQuantity }
             />
 
         </>

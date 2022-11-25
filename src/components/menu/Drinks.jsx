@@ -20,7 +20,7 @@ const Drinks = () => {
             <div className='drinks-page-content'>
                 {
                     categories.map( categoria => {
-                        return <div className='drinks-group'><DrinksGroup title={ categoria } /></div>
+                        return <div className='drinks-group' key={ categoria }><DrinksGroup title={ categoria } /></div>
                     })
                 }
             </div>

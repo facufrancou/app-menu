@@ -18,7 +18,7 @@ const DrinksGroup = ({ title }) => {
 
             <ul style={{ listStyle: 'none', padding: 0 }}>
                 { drinksFilter.map( ({ title, id }) => {
-                    return <DrinkItem title={ title } key={`${ title }-${ id }`} />
+                    return <DrinkItem title={ title } id={ id } key={`${ title }-${ id }`} />
                 }) }
             </ul>
 
