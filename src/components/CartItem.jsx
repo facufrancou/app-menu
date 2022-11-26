@@ -10,7 +10,7 @@ const CartItem = ({ title, category, price, quantity }) => {
                 <img src={ hamburguesa } alt="Imagen de hamburguesa" className='h-100 rounded' style={{ width:'5.625rem' }} />
 
                 <div className='ms-3'>
-                    <h3 className='text-white m-0' style={{ fontSize: '1.5rem' }}>{ title }</h3>
+                    <h3 className='text-white m-0' style={{ fontSize: '1.25rem' }}>{ title }</h3>
                     <p className='text-white mb-2 text-capitalize m-0'>{ category }</p>
                     <p className='text-warning fw-bold m-0' style={{ fontSize: '1.125rem' }}>${ price }</p>
                 </div>
