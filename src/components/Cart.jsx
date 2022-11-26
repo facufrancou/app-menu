@@ -26,48 +26,58 @@ function Cart() {
         setTable( cliente.mesa );
 
         let cartFoods = JSON.parse( localStorage.getItem('cartFoods') );
+        let priceFoods = 0;
+
+        if ( cartFoods === null ) {
+            cartFoods = [];
+        } else {
+            let lastFoodsCart = [];
+    
+            dataFoods.forEach( foodMenu => {
+                cartFoods.forEach( foodSession => {
+                    
+                    if( foodMenu.id === foodSession.id ) {
+                        lastFoodsCart.push({
+                            ...foodMenu,
+                            quantity: foodSession.quantity
+                        })
+                    }
+                })
+            })
+    
+            setFinalFoodsCart( lastFoodsCart );
+
+            priceFoods = lastFoodsCart.reduce( ( acum, food ) => {
+                return acum + ( food.price * food.quantity );
+            }, 0);
+        }
 
         let cartDrinks = JSON.parse( localStorage.getItem('cartDrinks') );
+        let priceDrinks = 0;
 
-        let lastFoodsCart = [];
-
-        dataFoods.forEach( foodMenu => {
-            cartFoods.forEach( foodSession => {
-                
-                if( foodMenu.id === foodSession.id ) {
-                    lastFoodsCart.push({
-                        ...foodMenu,
-                        quantity: foodSession.quantity
-                    })
-                }
+        if ( cartDrinks === null ) {
+            cartDrinks = [];
+        } else {
+            let lastDrinksCart = [];
+    
+            dataDrinks.forEach( drinkMenu => {
+                cartDrinks.forEach( drinkSession => {
+                    
+                    if( drinkMenu.id === drinkSession.id ) {
+                        lastDrinksCart.push({
+                            ...drinkMenu,
+                            quantity: drinkSession.quantity
+                        })
+                    }
+                })
             })
-        })
+    
+            setFinalDrinksCart( lastDrinksCart );
 
-        setFinalFoodsCart( lastFoodsCart );
-
-        let lastDrinksCart = [];
-
-        dataDrinks.forEach( drinkMenu => {
-            cartDrinks.forEach( drinkSession => {
-                
-                if( drinkMenu.id === drinkSession.id ) {
-                    lastDrinksCart.push({
-                        ...drinkMenu,
-                        quantity: drinkSession.quantity
-                    })
-                }
-            })
-        })
-
-        setFinalDrinksCart( lastDrinksCart );
-
-        let priceFoods = lastFoodsCart.reduce( ( acum, food ) => {
-            return acum + ( food.price * food.quantity );
-        }, 0);
-
-        let priceDrinks = lastDrinksCart.reduce( ( acum, drink ) => {
-            return acum + ( drink.price * drink.quantity );
-        }, 0);
+            priceDrinks = lastDrinksCart.reduce( ( acum, drink ) => {
+                return acum + ( drink.price * drink.quantity );
+            }, 0);
+        }
 
         setFinalPrice( priceFoods + priceDrinks );
       
