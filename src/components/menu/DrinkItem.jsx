@@ -88,9 +88,9 @@ const DrinkItem = ({ title, id }) => {
                     <h4>{ title }</h4>
                 </div>
                 <div className='drink-amount'>
-                    <i className="fa-solid fa-minus" style={{ cursor: 'pointer' }} onClick={ resQuantity } />
+                    <i className="fa-solid fa-minus text-white" style={{ cursor: 'pointer' }} onClick={ resQuantity } />
                     <p className='drink-amount-number'>{ quantity }</p>
-                    <i className="fa-solid fa-plus" style={{ cursor: 'pointer' }} onClick={ sumQuantity } />
+                    <i className="fa-solid fa-plus text-white" style={{ cursor: 'pointer' }} onClick={ sumQuantity } />
                 </div>
             </Button>
 

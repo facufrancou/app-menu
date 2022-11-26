@@ -76,7 +76,7 @@ function Cart() {
 
     return (
 
-        <main className='py-5 px-3' style={{ backgroundColor: 'black' }}>
+        <main className='py-5 px-3'>
             <h1 className='text-white fs-1' style={{ marginBottom: '2.5rem' }}>Mi pedido</h1>
             <p className='text-white text-start'>Comidas: { finalFoodsCart.length }</p>
 
