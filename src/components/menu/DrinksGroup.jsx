@@ -7,7 +7,7 @@ let dataDrinks = require('../../data/menuDrinks.json');
 const DrinksGroup = ({ title }) => {
 
     let drinksFilter = dataDrinks.filter( drink => {
-        return drink.categorie.toLowerCase() === title.toLowerCase();
+        return drink.category.toLowerCase() === title.toLowerCase();
     });
 
     return (

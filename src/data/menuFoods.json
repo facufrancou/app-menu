@@ -5,7 +5,7 @@
         "price": 100,
         "description": "comida rica",
         "image": "default",
-        "categorie" :"sandwiches",
+        "category" :"sandwiches",
         "available": true
     },
     {
@@ -14,7 +14,7 @@
         "price": 100,
         "description": "comida rica",
         "image": "default",
-        "categorie" :"sandwiches",
+        "category" :"sandwiches",
         "available": true
     },
     {
@@ -23,7 +23,7 @@
         "price": 100,
         "description": "comida rica",
         "image": "default",
-        "categorie" :"sandwiches",
+        "category" :"sandwiches",
         "available": true
     },
     {
@@ -32,7 +32,7 @@
         "price": 100,
         "description": "comida rica",
         "image": "default",
-        "categorie" :"sandwiches",
+        "category" :"sandwiches",
         "available": true
     },
     {
@@ -41,7 +41,7 @@
         "price": 100,
         "description": "comida rica",
         "image": "default",
-        "categorie" :"papas",
+        "category" :"papas",
         "available": true
     },
     {
@@ -50,7 +50,7 @@
         "price": 100,
         "description": "comida rica",
         "image": "default",
-        "categorie" :"papas",
+        "category" :"papas",
         "available": true
     },
     {
@@ -59,7 +59,7 @@
         "price": 100,
         "description": "comida rica",
         "image": "default",
-        "categorie" :"papas",
+        "category" :"papas",
         "available": true
     },
     {
@@ -68,7 +68,7 @@
         "price": 100,
         "description": "comida rica",
         "image": "default",
-        "categorie" :"papas",
+        "category" :"papas",
         "available": true
     },
     {
@@ -77,7 +77,7 @@
         "price": 100,
         "description": "comida rica",
         "image": "default",
-        "categorie" :"pizzas",
+        "category" :"pizzas",
         "available": true
     },
     {
@@ -86,7 +86,7 @@
         "price": 100,
         "description": "comida rica",
         "image": "default",
-        "categorie" :"pizzas",
+        "category" :"pizzas",
         "available": true
     },
     {
@@ -95,7 +95,7 @@
         "price": 100,
         "description": "comida rica",
         "image": "default",
-        "categorie" :"pizzas",
+        "category" :"pizzas",
         "available": true
     },
     {
@@ -104,7 +104,7 @@
         "price": 100,
         "description": "comida rica",
         "image": "default",
-        "categorie" :"pizzas",
+        "category" :"pizzas",
         "available": true
     },
     {
@@ -113,7 +113,7 @@
         "price": 100,
         "description": "comida rica",
         "image": "default",
-        "categorie" :"pizzas",
+        "category" :"pizzas",
         "available": true
     },
     {
@@ -122,7 +122,7 @@
         "price": 100,
         "description": "comida rica",
         "image": "default",
-        "categorie" :"pizzas",
+        "category" :"pizzas",
         "available": true
     },
     {
@@ -131,7 +131,7 @@
         "price": 100,
         "description": "comida rica",
         "image": "default",
-        "categorie" :"pizzas",
+        "category" :"pizzas",
         "available": true
     },
     {
@@ -140,7 +140,7 @@
         "price": 100,
         "description": "comida rica",
         "image": "default",
-        "categorie" :"burgers",
+        "category" :"burgers",
         "available": true
     },
     {
@@ -149,7 +149,7 @@
         "price": 100,
         "description": "comida rica",
         "image": "default",
-        "categorie" :"burgers",
+        "category" :"burgers",
         "available": true
     },
     {
@@ -158,7 +158,7 @@
         "price": 100,
         "description": "comida rica",
         "image": "default",
-        "categorie" :"burgers",
+        "category" :"burgers",
         "available": true
     },
     {
@@ -167,7 +167,7 @@
         "price": 100,
         "description": "comida rica",
         "image": "default",
-        "categorie" :"burgers",
+        "category" :"burgers",
         "available": true
     }
 ]
