@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 
 import CartItemDetail from './CartItemDetail';
+import CartItemQuantity from './CartItemQuantity';
 
 import hamburguesa from '../assets/hamburguesa.jpg'
 
@@ -10,6 +11,8 @@ import hamburguesa from '../assets/hamburguesa.jpg'
 const CartItem = ({ id, title, category, price, quantity, finalCart, setFinalCart, groupItems }) => {
 
     const [ modalShow, setModalShow ] = useState( false );
+    const [ modalQuantityShow, setModalQuantityShow ] = useState( false );
+    const [ quantityItem, setQuantityItem ] = useState( quantity );
 
     return (
 
@@ -29,9 +32,11 @@ const CartItem = ({ id, title, category, price, quantity, finalCart, setFinalCar
                 <Button variant='primary' style={{ backgroundColor: 'transparent', border: 'none' }} onClick={() => setModalShow(true)}>
                     <i className="fa-regular fa-x text-secondary fs-5" />
                 </Button>
-                <p className='text-white text-decoration-underline m-0' style={{ fontSize: '0.875rem' }}>
-                    Cantidad: { quantity }
-                </p>
+                <Button variant='primary' style={{ backgroundColor: 'transparent', border: 'none', padding: '0' }} onClick={() => setModalQuantityShow(true)}>
+                    <p className='text-white text-decoration-underline m-0' style={{ fontSize: '0.875rem' }}>
+                        Cantidad: { quantityItem }
+                    </p>
+                </Button>
             </div>
 
             <CartItemDetail
@@ -41,6 +46,18 @@ const CartItem = ({ id, title, category, price, quantity, finalCart, setFinalCar
                 finalCart={ finalCart }
                 setFinalCart={ setFinalCart }
                 groupItems={ groupItems }
+            />
+
+            <CartItemQuantity
+                show={ modalQuantityShow }
+                onHide={() => setModalQuantityShow( false )}
+                id={ id }
+                title={ title }
+                category={ category }
+                finalCart={ finalCart }
+                groupItems={ groupItems }
+                quantityItem={ quantityItem }
+                setQuantityItem={ setQuantityItem }
             />
 
         </div>

@@ -8,7 +8,7 @@ let dataFoods = require('../data/menuFoods.json');
 let dataDrinks = require('../data/menuDrinks.json');
 
 
-function Cart() {
+const Cart = () => {
 
     let [ name, setName ] = useState( false );
     let [ table, setTable ] = useState( false ); 
