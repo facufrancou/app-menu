@@ -92,7 +92,17 @@ function Cart() {
 
             <ul className='text-start p-0 mb-4' style={{ listStyle: 'none' }}>
                 { finalFoodsCart.map( ({ id, title, category, price, quantity }) => {
-                    return <CartItem key={ id } title={ title } category={ category } price={ price } quantity={ quantity } />
+                    return <CartItem 
+                                key={ id } 
+                                id={ id }
+                                title={ title } 
+                                category={ category } 
+                                price={ price } 
+                                quantity={ quantity }
+                                finalCart={ finalFoodsCart }
+                                setFinalCart={ setFinalFoodsCart } 
+                                groupItems='foods'
+                            />
                 })}
             </ul>
 
@@ -100,7 +110,17 @@ function Cart() {
 
             <ul className='text-start p-0 mb-4' style={{ listStyle: 'none' }}>
                 { finalDrinksCart.map( ({ id, title, category, price, quantity }) => {
-                    return <CartItem key={ id } title={ title } category={ category } price={ price } quantity={ quantity } />
+                    return <CartItem 
+                                key={ id } 
+                                id={ id } 
+                                title={ title } 
+                                category={ category } 
+                                price={ price } 
+                                quantity={ quantity }
+                                finalCart={ finalDrinksCart }
+                                setFinalCart={ setFinalDrinksCart }  
+                                groupItems='drinks'
+                            />
                 })}
             </ul>
 
