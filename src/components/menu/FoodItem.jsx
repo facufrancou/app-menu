@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import FoodDetail from './FoodDetail';
 
 
-const FoodItem = ({ title, id }) => {
+const FoodItem = ({ id, title, price, description, image }) => {
 
     const [ quantity, setQuantity ] = useState( 0 );
 
@@ -100,6 +100,9 @@ const FoodItem = ({ title, id }) => {
                 onHide={() => setModalShow( false )}
                 title={ title }
                 id={ id }
+                price={ price }
+                description={ description }
+                image={ image }
                 quantity={ quantity }
                 resQuantity={ resQuantity }
                 sumQuantity={ sumQuantity }

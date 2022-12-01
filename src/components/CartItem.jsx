@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import CartItemDetail from './CartItemDetail';
 import CartItemQuantity from './CartItemQuantity';
 
-import hamburguesa from '../assets/hamburguesa.jpg'
+import hamburguesa from '../assets/burger.jpg'
 
 
 const CartItem = ({ id, title, category, price, quantity, finalCart, setFinalCart, groupItems }) => {
