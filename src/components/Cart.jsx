@@ -89,7 +89,26 @@ const Cart = () => {
 
     let sendOrder = () => {
 
-        let message = `📄%20Nombre:%20${ name }%0A#️⃣%20Mesa:%20${ table }%0A💰%20Monto%20total:%20${ finalPrice }`;
+        let foodsWhatsApp = [];
+
+        finalFoodsCart.map( ({ title, price }) => {
+            foodsWhatsApp.push( `-%20${ title }%20-%20$${ price }` )
+        });
+
+        let drinksWhatsApp = [];
+
+        finalDrinksCart.map( ({ title, price }) => {
+            drinksWhatsApp.push( `-%20${ title }%20-%20$${ price }` )
+        });
+
+        let diaActual = new Date();
+        let dia = diaActual.getDate();
+        let mes = diaActual.getMonth()+1;
+        let anio = diaActual.getFullYear();
+
+        let fecha  = dia + '/' + mes + '/' + anio;
+
+        let message = `*Bienvenidos%20al%20Restaurante*%0A%0A📄%20Nombre:%20${ name }%0A🪑%20Mesa:%20${ table }%0A📅%20Fecha:%20${ fecha }%0A%0A🍔%20Comidas:%0A${ foodsWhatsApp.join('%0A') }%0A%0A🍸%20Bebidas:%0A${ drinksWhatsApp.join('%0A') }%0A%0A%0A💰%20*Monto%20total:%20$${ finalPrice }*`;
 
         let url = `https://api.whatsapp.com/send?phone=584166097414&text=${ message }`;
 
