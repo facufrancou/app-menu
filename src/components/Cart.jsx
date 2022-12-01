@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
 import Button from 'react-bootstrap/Button';
 
 import CartItem from './CartItem';
@@ -81,8 +83,22 @@ const Cart = () => {
 
         setFinalPrice( priceFoods + priceDrinks );
       
-    }, [])
-    
+    }, []);
+
+    const navigate = useNavigate();
+
+    let sendOrder = () => {
+
+        let message = `Nombre:%20${ name }%0AMesa:%20${ table }%0AMonto total:%20${ finalPrice }`;
+
+        let url = `https://api.whatsapp.com/send?phone=584166097414&text=${ message }`;
+
+        navigate( url );
+
+        localStorage.removeItem( 'cliente' );
+        localStorage.removeItem( 'cartFoods' );
+        localStorage.removeItem( 'cartDrinks' );
+    }
 
     return (
 
@@ -141,7 +157,9 @@ const Cart = () => {
 
             </div>
 
-            <Button variant='warning' className='fw-bold rounded-pill py-3' style={{ width: '160px' }}>Hacer pedido</Button>
+            <Button variant='warning' className='fw-bold rounded-pill py-3' style={{ width: '160px' }} onClick={ sendOrder }>
+                Hacer pedido
+            </Button>
 
         </main>
 
