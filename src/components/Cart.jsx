@@ -89,11 +89,12 @@ const Cart = () => {
 
     let sendOrder = () => {
 
-        let message = `Nombre:%20${ name }%0AMesa:%20${ table }%0AMonto total:%20${ finalPrice }`;
+        let message = `Nombre:%20${ name }%0AMesa:%20${ table }%0AMonto%20total:%20${ finalPrice }`;
 
         let url = `https://api.whatsapp.com/send?phone=584166097414&text=${ message }`;
 
-        navigate( url );
+        /* navigate( url, { replace: true } ) */
+        window.location.replace( url );
 
         localStorage.removeItem( 'cliente' );
         localStorage.removeItem( 'cartFoods' );
