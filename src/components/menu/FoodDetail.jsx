@@ -18,7 +18,7 @@ const FoodDetail = ( props ) => {
             </Modal.Header>
 
             <Modal.Body style={{ backgroundColor: 'black' }}>
-                <img src={ require(`../../assets/${ props.image }`) } alt="Imagen de hamburguesa" className='modal-img' />
+                <img src={ require(`../../assets/${ props.image }`) } alt={`Imagen de ${props.title}`} className='modal-img' />
                 <p className='modal-description-food'><strong>Descripción: </strong>{ props.description }</p>
             </Modal.Body>
 

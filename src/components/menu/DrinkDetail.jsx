@@ -1,6 +1,5 @@
 import Modal from 'react-bootstrap/Modal';
 
-import coctel from "../../assets/coctel.jpg";
 
 const DrinkDetail = ( props ) => {
 
@@ -19,13 +18,13 @@ const DrinkDetail = ( props ) => {
             </Modal.Header>
 
             <Modal.Body style={{ backgroundColor: 'black' }}>
-                <img src={ coctel } alt="Imagen de coctel" className='modal-img' />
-                <p className='modal-description-drink'><strong>Descripción: </strong>Mirra, ruibarbo, manzanilla, cardamomo, azafrán y alcohol de uva.</p>
+                <img src={ require(`../../assets/${ props.image }`) } alt={`Imagen de ${props.title}`} className='modal-img' />
+                <p className='modal-description-drink'><strong>Descripción: </strong>{ props.description }</p>
             </Modal.Body>
 
             <Modal.Footer style={{ backgroundColor: 'black' }}>
                 <div className='modal-price-box'>
-                    <p className='modal-price'>Precio: $10000</p>
+                    <p className='modal-price'>Precio: ${ props.price }</p>
                     <div className='modal-drink-amount'>
                         <i className="fa-solid fa-minus" style={{ cursor: 'pointer' }} onClick={ props.resQuantity } />
                         <p className='modal-drink-amount-number'>{ props.quantity }</p>

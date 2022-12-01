@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 
 import DrinkDetail from './DrinkDetail';
 
-const DrinkItem = ({ title, id }) => {
+const DrinkItem = ({ id, title, price, description, image }) => {
 
     const [ quantity, setQuantity ] = useState( 0 );
 
@@ -97,8 +97,11 @@ const DrinkItem = ({ title, id }) => {
             <DrinkDetail
                 show={ modalShow }
                 onHide={() => setModalShow( false )}
-                title={ title }
                 id={ id }
+                title={ title }
+                price={ price }
+                description={ description }
+                image={ image }
                 quantity={ quantity }
                 resQuantity={ resQuantity }
                 sumQuantity={ sumQuantity }

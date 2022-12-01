@@ -17,8 +17,15 @@ const DrinksGroup = ({ title }) => {
             <h2 style={{ textTransform: 'uppercase' }}>{ title }</h2>
 
             <ul style={{ listStyle: 'none', padding: 0 }}>
-                { drinksFilter.map( ({ title, id }) => {
-                    return <DrinkItem title={ title } id={ id } key={`${ title }-${ id }`} />
+                { drinksFilter.map( ({ id, title, price, description, image }) => {
+                    return <DrinkItem 
+                                id={ id } 
+                                title={ title } 
+                                price={ price } 
+                                description={ description } 
+                                image={ image } 
+                                key={`${ title }-${ id }`} 
+                            />
                 }) }
             </ul>
 
