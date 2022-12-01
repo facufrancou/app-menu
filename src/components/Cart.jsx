@@ -89,7 +89,7 @@ const Cart = () => {
 
     let sendOrder = () => {
 
-        let message = `Nombre:%20${ name }%0AMesa:%20${ table }%0AMonto%20total:%20${ finalPrice }`;
+        let message = `📄%20Nombre:%20${ name }%0A#️⃣%20Mesa:%20${ table }%0A💰%20Monto%20total:%20${ finalPrice }`;
 
         let url = `https://api.whatsapp.com/send?phone=584166097414&text=${ message }`;
 
