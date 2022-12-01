@@ -25,7 +25,7 @@ const Foods = () => {
 
         <main className='foods-page' bg='success'>
 
-            <div className='foods-button' style={{ margin: '1rem 0' }}>
+            <div className='foods-button' style={{ marginTop: '1rem', marginBottom: '2rem' }}>
                 <Button onClick={ nextPageDrinks } variant='warning'>Ir al menú de BEBIDAS</Button>
             </div>
 

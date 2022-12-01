@@ -23,7 +23,7 @@ const Drinks = () => {
 
         <main className='drinks-page' bg='success'>
 
-            <div className='drinks-button' style={{ margin: '1rem 0' }}>
+            <div className='drinks-button' style={{ marginTop: '1rem', marginBottom: '2rem' }}>
                 <Button onClick={ nextPageFoods } variant='warning'>Ir al menú de COMIDAS</Button>
             </div>
 
