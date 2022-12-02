@@ -5,10 +5,10 @@ import Button from 'react-bootstrap/Button';
 import CartItemDetail from './CartItemDetail';
 import CartItemQuantity from './CartItemQuantity';
 
-import hamburguesa from '../assets/burger.jpg'
+/* import hamburguesa from '../assets/burger.jpg' */
 
 
-const CartItem = ({ id, title, category, price, quantity, finalCart, setFinalCart, groupItems }) => {
+const CartItem = ({ id, title, category, price, image, quantity, finalCart, setFinalCart, groupItems }) => {
 
     const [ modalShow, setModalShow ] = useState( false );
     const [ modalQuantityShow, setModalQuantityShow ] = useState( false );
@@ -19,11 +19,13 @@ const CartItem = ({ id, title, category, price, quantity, finalCart, setFinalCar
         <div className='d-flex justify-content-between mb-2 rounded' style={{ height: '6.625rem', backgroundColor: '#232323', padding:'0.625rem' }}>
 
             <div className='d-flex'>
-                <img src={ hamburguesa } alt="Imagen de hamburguesa" className='h-100 rounded' style={{ width:'5.625rem' }} />
+                <img src={ require(`../assets/${ image }`) } alt={`Imagen de ${ title }`} className='h-100 rounded' style={{ width:'5.625rem' }} />
 
-                <div className='ms-3'>
-                    <h3 className='text-white m-0' style={{ fontSize: '1.25rem' }}>{ title }</h3>
-                    <p className='text-white mb-2 text-capitalize m-0'>{ category }</p>
+                <div className='ms-3 d-flex flex-column justify-content-between align-items-start'>
+                    <div>
+                        <h3 className='text-white m-0' style={{ fontSize: '1.125rem' }}>{ title }</h3>
+                        <p className='text-white text-capitalize m-0'>{ category }</p>
+                    </div>
                     <p className='text-warning fw-bold m-0' style={{ fontSize: '1.125rem' }}>${ price }</p>
                 </div>
             </div>

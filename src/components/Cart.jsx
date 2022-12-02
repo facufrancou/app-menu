@@ -128,14 +128,14 @@ const Cart = () => {
 
         let foodsWhatsApp = [];
 
-        finalFoodsCart.map( ({ title, price }) => {
-            foodsWhatsApp.push( `-%20${ title }%20-%20$${ price }` )
+        finalFoodsCart.map( ({ title, price, quantity }) => {
+            foodsWhatsApp.push( `-%20(${ quantity })%20${ title }%20-%20*$${ price }*` )
         });
 
         let drinksWhatsApp = [];
 
-        finalDrinksCart.map( ({ title, price }) => {
-            drinksWhatsApp.push( `-%20${ title }%20-%20$${ price }` )
+        finalDrinksCart.map( ({ title, price, quantity }) => {
+            drinksWhatsApp.push( `-%20(${ quantity })%20${ title }%20-%20*$${ price }*` )
         });
 
         let diaActual = new Date();
@@ -164,13 +164,14 @@ const Cart = () => {
             <p className='text-white text-start'>Comidas: { finalFoodsCart.length }</p>
 
             <ul className='text-start p-0 mb-4' style={{ listStyle: 'none' }}>
-                { finalFoodsCart.map( ({ id, title, category, price, quantity }) => {
+                { finalFoodsCart.map( ({ id, title, category, price, image, quantity }) => {
                     return <CartItem 
                                 key={ id } 
                                 id={ id }
                                 title={ title } 
                                 category={ category } 
                                 price={ price } 
+                                image={ image } 
                                 quantity={ quantity }
                                 finalCart={ finalFoodsCart }
                                 setFinalCart={ setFinalFoodsCart }
@@ -183,13 +184,14 @@ const Cart = () => {
             <p className='text-white text-start'>Bebidas: { finalDrinksCart.length }</p>
 
             <ul className='text-start p-0 mb-4' style={{ listStyle: 'none' }}>
-                { finalDrinksCart.map( ({ id, title, category, price, quantity }) => {
+                { finalDrinksCart.map( ({ id, title, category, price, image, quantity }) => {
                     return <CartItem 
                                 key={ id } 
                                 id={ id } 
                                 title={ title } 
                                 category={ category } 
                                 price={ price } 
+                                image={ image } 
                                 quantity={ quantity }
                                 finalCart={ finalDrinksCart }
                                 setFinalCart={ setFinalDrinksCart }  
