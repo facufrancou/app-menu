@@ -3,7 +3,7 @@
         "id": 1,
         "title": "Del Campo",
         "price": 1300,
-        "description": "Pechuga de pollo gratinada con oliva, pimienta y limon; lechuga, tomate cherry y salsa de la casa, acompañado de papas españolas crocantes",
+        "description": "Pechuga de pollo gratinada con oliva, pimienta y limon; lechuga, tomate cherry y salsa de la casa, acompañado de papas españolas",
         "image": "sandwich.jpg",
         "category" :"sandwiches",
         "available": true

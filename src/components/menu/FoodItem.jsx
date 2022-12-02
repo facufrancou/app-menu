@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react';
 
 import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 
-import FoodDetail from './FoodDetail';
+/* import FoodDetail from './FoodDetail'; */
 
 
 const FoodItem = ({ id, title, price, description, image }) => {
 
     const [ quantity, setQuantity ] = useState( 0 );
 
-    const [ modalShow, setModalShow ] = useState( false );
+    /* const [ modalShow, setModalShow ] = useState( false ); */
 
     useEffect(() => {
         let arrayCart = localStorage.getItem('cartFoods');
@@ -84,29 +85,28 @@ const FoodItem = ({ id, title, price, description, image }) => {
 
         <>
 
-            <Button variant="primary" className='item-food' onClick={() => setModalShow(true)}>
-                <div>
-                    <h4>{ title }</h4>
-                </div>
-                <div className='food-amount'>
-                    <i className="fa-solid fa-minus" style={{ cursor: 'pointer' }} onClick={ resQuantity } />
-                    <p className='food-amount-number'>{ quantity }</p>
-                    <i className="fa-solid fa-plus" style={{ cursor: 'pointer' }} onClick={ sumQuantity } />
-                </div>
-            </Button>
-
-            <FoodDetail
-                show={ modalShow }
-                onHide={() => setModalShow( false )}
-                title={ title }
-                id={ id }
-                price={ price }
-                description={ description }
-                image={ image }
-                quantity={ quantity }
-                resQuantity={ resQuantity }
-                sumQuantity={ sumQuantity }
-            />
+            <Card style={{ width: '16.75rem', height: '100%', backgroundColor: '#1B1B1B', display: 'inline-block', marginRight: '0.625rem' }}>
+                <Card.Img variant="top" src={ require(`../../assets/${ image }`) } alt={`Imagen de ${ title }`} style={{ height: '175px' }} />
+                <Card.Body className='d-flex flex-column justify-content-between align-items-start' style={{ padding: '0.625rem', height: '223px' }}>
+                    <div>
+                        <Card.Title className='fw-semibold text-start text-wrap' style={{ fontSize: '1.125rem' }}>{ title }</Card.Title>
+                        <Card.Text className='fw-normal text-start lh-1 text-wrap' style={{ marginBottom: '0.75rem' }}>{ description }</Card.Text>
+                        <Card.Text className='fw-semibold text-start text-warning' style={{ fontSize: '1.125rem' }}>${ price }</Card.Text>
+                    </div>
+                        <Button variant='primary' 
+                            className='rounded-pill py-2 mx-auto d-flex flex-nowrap justify-content-between align-items-center' 
+                            style={{ width: '140px', backgroundColor: 'transparent', border: '1px solid #8F6F6F' }} 
+                            >
+                        <i className='fa-solid fa-minus rounded-circle' 
+                            style={{ fontSize: '2rem', color: 'black', backgroundColor: '#474747', cursor: 'pointer', padding: '0.125rem 0.3125rem' }} 
+                            onClick={ resQuantity } />
+                        <p className='fw-semibold p-0 m-0' style={{ fontSize: '1.125rem' }}>{ quantity }</p>
+                        <i className='fa-solid fa-plus rounded-circle' 
+                            style={{ fontSize: '2rem', color: 'black', backgroundColor: '#FFC107', cursor: 'pointer', padding: '0.125rem 0.3125rem' }} 
+                            onClick={ sumQuantity } />
+                    </Button>
+                </Card.Body>
+            </Card>
 
         </>
         

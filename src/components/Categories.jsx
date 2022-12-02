@@ -42,7 +42,7 @@ const Categories = () => {
                     style={{ cursor: 'pointer' }}
                     onClick={ nextPageFoods }>
                     <Card.Body>
-                        <i className="fa-solid fa-burger text-center text-warning" style={{ fontSize: '60px', marginBottom: '1rem' }}></i>
+                        <i className="fa-solid fa-burger text-center text-warning" style={{ fontSize: '3.75rem', marginBottom: '1rem' }}></i>
                         <Card.Title>Menú de comidas</Card.Title>
                     </Card.Body>
                 </Card>
@@ -51,7 +51,7 @@ const Categories = () => {
                     style={{ cursor: 'pointer' }}
                     onClick={ nextPageDrinks }>
                     <Card.Body>
-                        <i className="fa-solid fa-wine-glass text-center text-warning" style={{ fontSize: '60px', marginBottom: '1rem' }}></i>
+                        <i className="fa-solid fa-wine-glass text-center text-warning" style={{ fontSize: '3.75rem', marginBottom: '1rem' }}></i>
                         <Card.Title>Menú de bebidas</Card.Title>
                     </Card.Body>
                 </Card>

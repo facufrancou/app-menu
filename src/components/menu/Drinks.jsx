@@ -21,11 +21,12 @@ const Drinks = () => {
 
     return (
 
-        <main className='drinks-page' bg='success'>
+        <main className='drinks-page pb-5' bg='success'>
 
-            <div className='drinks-button' style={{ marginTop: '1rem', marginBottom: '2rem' }}>
+            {/* <div className='drinks-button' style={{ marginTop: '1rem', marginBottom: '2rem' }}>
                 <Button onClick={ nextPageFoods } variant='warning'>Ir al menú de COMIDAS</Button>
-            </div>
+            </div> */}
+            <h2 className='fw-semibold text-center' style={{ fontSize: '1.5rem', marginTop: '2.5rem', marginBottom: '2rem' }}>Bebidas</h2>
 
             <div className='drinks-page-content'>
                 {
@@ -36,7 +37,12 @@ const Drinks = () => {
             </div>
 
             <div className='drinks-checkout-button' style={{ margin: '1rem 0' }}>
-                <Button onClick={ nextPageCart } variant='warning'>Facturar pedido</Button>
+                <Button variant='outline-warning' className='fw-bold rounded-pill py-3' style={{ width: '140px', backgroundColor: 'black' }} onClick={ nextPageFoods }>
+                    Menú bebidas
+                </Button>
+                <Button variant='warning' className='fw-bold rounded-pill py-3' style={{ width: '140px' }} onClick={ nextPageCart }>
+                    Hacer pedido
+                </Button>
             </div>
 
         </main>
