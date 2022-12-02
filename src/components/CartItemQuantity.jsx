@@ -17,6 +17,13 @@ const CartItemQuantity = ( props ) => {
                             quantity: props.quantityItem - 1
                         }
                     )
+                } else {
+                    return (
+                        {
+                            id: item.id,
+                            quantity: item.quantity
+                        }
+                    )
                 }
             })
     
@@ -34,6 +41,8 @@ const CartItemQuantity = ( props ) => {
                             quantity: props.quantityItem - 1
                         }
                     )
+                } else {
+                    return item;
                 }
             })
 
@@ -54,6 +63,13 @@ const CartItemQuantity = ( props ) => {
                         quantity: props.quantityItem + 1
                     }
                 )
+            } else {
+                return (
+                    {
+                        id: item.id,
+                        quantity: item.quantity
+                    }
+                )
             }
         })
 
@@ -71,6 +87,8 @@ const CartItemQuantity = ( props ) => {
                         quantity: props.quantityItem + 1
                     }
                 )
+            } else {
+                return item;
             }
         })
 
