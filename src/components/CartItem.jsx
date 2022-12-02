@@ -55,6 +55,7 @@ const CartItem = ({ id, title, category, price, quantity, finalCart, setFinalCar
                 title={ title }
                 category={ category }
                 finalCart={ finalCart }
+                setFinalCart={ setFinalCart }
                 groupItems={ groupItems }
                 quantityItem={ quantityItem }
                 setQuantityItem={ setQuantityItem }

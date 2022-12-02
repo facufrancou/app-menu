@@ -6,7 +6,6 @@ const CartItemQuantity = ( props ) => {
 
     let resQuantity = () => {
         
-
         if ( props.quantityItem > 0 ) {
             props.setQuantityItem( props.quantityItem - 1 );
 
@@ -15,7 +14,7 @@ const CartItemQuantity = ( props ) => {
                     return (
                         {
                             id: item.id,
-                            quantity: props.quantityItem + 1
+                            quantity: props.quantityItem - 1
                         }
                     )
                 }
@@ -26,6 +25,19 @@ const CartItemQuantity = ( props ) => {
             } else {
                 localStorage.setItem( 'cartDrinks', JSON.stringify( finalNewCart ) );
             }
+
+            let newFinalCartState = props.finalCart.map( item => {
+                if ( item.id === props.id ) {
+                    return (
+                        {
+                            ...item,
+                            quantity: props.quantityItem - 1
+                        }
+                    )
+                }
+            })
+
+            props.setFinalCart( newFinalCartState );
         }
 
     }
@@ -50,6 +62,19 @@ const CartItemQuantity = ( props ) => {
         } else {
             localStorage.setItem( 'cartDrinks', JSON.stringify( finalNewCart ) );
         }
+
+        let newFinalCartState = props.finalCart.map( item => {
+            if ( item.id === props.id ) {
+                return (
+                    {
+                        ...item,
+                        quantity: props.quantityItem + 1
+                    }
+                )
+            }
+        })
+
+        props.setFinalCart( newFinalCartState );
 
     }
 

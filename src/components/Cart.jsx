@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { useNavigate } from 'react-router-dom';
+/* import { useNavigate } from 'react-router-dom'; */
 
 import Button from 'react-bootstrap/Button';
 
@@ -85,7 +85,44 @@ const Cart = () => {
       
     }, []);
 
-    const navigate = useNavigate();
+    useEffect(() => {
+
+        let priceFoods = 0;
+
+        priceFoods = finalFoodsCart.reduce( ( acum, food ) => {
+            return acum + ( food.price * food.quantity );
+        }, 0);
+
+        let priceDrinks = 0;
+
+        priceDrinks = finalDrinksCart.reduce( ( acum, drink ) => {
+            return acum + ( drink.price * drink.quantity );
+        }, 0);
+
+        setFinalPrice( priceFoods + priceDrinks );
+        
+    }, [ finalFoodsCart ]);
+
+    useEffect(() => {
+
+        let priceFoods = 0;
+
+        priceFoods = finalFoodsCart.reduce( ( acum, food ) => {
+            return acum + ( food.price * food.quantity );
+        }, 0);
+
+        let priceDrinks = 0;
+
+        priceDrinks = finalDrinksCart.reduce( ( acum, drink ) => {
+            return acum + ( drink.price * drink.quantity );
+        }, 0);
+
+        setFinalPrice( priceFoods + priceDrinks );
+        
+    }, [ finalDrinksCart ]);
+    
+
+    /* const navigate = useNavigate(); */
 
     let sendOrder = () => {
 
@@ -108,7 +145,7 @@ const Cart = () => {
 
         let fecha  = dia + '/' + mes + '/' + anio;
 
-        let message = `*Bienvenidos%20al%20Restaurante*%0A%0A📄%20Nombre:%20${ name }%0A🪑%20Mesa:%20${ table }%0A📅%20Fecha:%20${ fecha }%0A%0A🍔%20Comidas:%0A${ foodsWhatsApp.join('%0A') }%0A%0A🍸%20Bebidas:%0A${ drinksWhatsApp.join('%0A') }%0A%0A%0A💰%20*Monto%20total:%20$${ finalPrice }*`;
+        let message = `*Bienvenidos%20al%20Restaurante*%0A%0A📄%20Nombre:%20${ name }%0A🪑%20Mesa:%20${ table }%0A📅%20Fecha:%20${ fecha }%0A%0A🍔%20Comidas:%0A${ foodsWhatsApp.join('%0A') }%0A%0A🍸%20Bebidas:%0A${ drinksWhatsApp.join('%0A') }%0A%0A%0A💰%20*Monto%20total:%20$${ finalPrice + ( finalPrice * 0.21 ) }*`;
 
         let url = `https://api.whatsapp.com/send?phone=584166097414&text=${ message }`;
 
@@ -136,7 +173,8 @@ const Cart = () => {
                                 price={ price } 
                                 quantity={ quantity }
                                 finalCart={ finalFoodsCart }
-                                setFinalCart={ setFinalFoodsCart } 
+                                setFinalCart={ setFinalFoodsCart }
+                                setFinalPrice={ setFinalPrice } 
                                 groupItems='foods'
                             />
                 })}
@@ -155,6 +193,7 @@ const Cart = () => {
                                 quantity={ quantity }
                                 finalCart={ finalDrinksCart }
                                 setFinalCart={ setFinalDrinksCart }  
+                                setFinalPrice={ setFinalPrice } 
                                 groupItems='drinks'
                             />
                 })}
