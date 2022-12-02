@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { useNavigate } from "react-router-dom";
 
-import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 
 const Categories = () => {
 
@@ -36,11 +36,26 @@ const Categories = () => {
 
             <p>Acá podes elegir que comer o que tomar...</p>
 
-            <div className='container' >
-                <Button onClick={ nextPageFoods } className='container col-md-12' variant='warning'>Menú de comidas</Button>
-                <br />
-                <br />
-                <Button onClick={ nextPageDrinks } className='container col-md-12' variant='warning'>Menú de bebidas</Button>
+            <div className='mt-3 container' >
+
+                <Card className='bg-transparent w-75 border border-warning border-3 mx-auto mb-3' 
+                    style={{ cursor: 'pointer' }}
+                    onClick={ nextPageFoods }>
+                    <Card.Body>
+                        <i className="fa-solid fa-burger text-center text-warning" style={{ fontSize: '60px', marginBottom: '1rem' }}></i>
+                        <Card.Title>Menú de comidas</Card.Title>
+                    </Card.Body>
+                </Card>
+
+                <Card className='bg-transparent w-75 border border-warning border-3 mx-auto' 
+                    style={{ cursor: 'pointer' }}
+                    onClick={ nextPageDrinks }>
+                    <Card.Body>
+                        <i className="fa-solid fa-wine-glass text-center text-warning" style={{ fontSize: '60px', marginBottom: '1rem' }}></i>
+                        <Card.Title>Menú de bebidas</Card.Title>
+                    </Card.Body>
+                </Card>
+
             </div>
             
         </main>
