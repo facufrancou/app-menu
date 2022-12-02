@@ -67,6 +67,9 @@ const Home = () => {
         <p className="">{errorMessage}</p>
         <Button
           type="submit"
+          variant='warning'
+          className='fw-bold rounded-pill py-3'
+          style={{ width: '160px' }}
           /* variant="success" */
           disabled={errorMessage}
           onClick={nextPage}
