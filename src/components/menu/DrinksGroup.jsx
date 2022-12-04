@@ -13,13 +13,13 @@ const DrinksGroup = ({ title }) => {
     let iconCategory = '';
 
     if ( title === 'Cocteles' ) {
-        iconCategory = 'fa-martini-glass-citrus' 
+        iconCategory = 'fi-rr-cocktail-alt' 
     } else if ( title === 'Cervezas' ) {
-        iconCategory = 'fa-beer-mug-empty' 
+        iconCategory = 'fi-rr-beer' 
     } else if ( title === 'Vinos & Espumantes' ) {
-        iconCategory = 'fa-wine-glass' 
+        iconCategory = 'fi-rr-bottle' 
     } else {
-        iconCategory = 'fa-bottle-water' 
+        iconCategory = 'fi-rr-water-bottle'
     }
 
     return (
@@ -27,14 +27,13 @@ const DrinksGroup = ({ title }) => {
         <>
 
             <div className='d-flex flex-nowrap ps-3 mb-0'>
-                <i className={`fa-solid ${ iconCategory } text-warning`} style={{ fontSize: '1.5rem', marginRight: '0.625rem' }}></i>
+                <i className={`fi ${ iconCategory } text-warning`} style={{ fontSize: '1.5rem', marginRight: '0.625rem' }}></i>
                 <h2 className='text-start fw-semibold' style={{ fontSize: '1.25rem' }}>{ title }</h2>
             </div>
 
 
             <ul style={{ 
-                listStyle: 'none', 
-                padding: 0, 
+                listStyle: 'none',
                 marginBottom: '1.5rem',
                 height: '27rem',
                 width: 'calc(100% - 16px)',

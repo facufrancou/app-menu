@@ -5,7 +5,7 @@ import Image from "react-bootstrap/Image";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-import logo from "../assets/logoTL.svg";
+import logo from "../assets/logo.svg";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -26,9 +26,9 @@ const Home = () => {
   const errorMessage = validate(name, table);
 
   return (
-    <main className="home" bg="secondary">
-      <div className="img">
-        <Image src={logo} alt="Logo del bar" width={250} height={200} />
+    <main className="d-flex flex-nowrap flex-column justify-content-center align-items-center" style={{ height: '100vh' }} bg="secondary">
+      <div className="img mb-4">
+        <Image src={logo} alt="Logo del restaurante" width={230} height={120} />
       </div>
 
       <div className="container">

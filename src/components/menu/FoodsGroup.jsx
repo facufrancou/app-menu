@@ -14,13 +14,13 @@ const FoodsGroup = ({ title }) => {
     let iconCategory = '';
 
     if ( title === 'Sandwiches' ) {
-        iconCategory = 'fa-hotdog' 
+        iconCategory = 'fi-rr-sandwich' 
     } else if ( title === 'Papas' ) {
-        iconCategory = 'fa-bowl-food' 
+        iconCategory = 'fi-rr-french-fries' 
     } else if ( title === 'Pizzas' ) {
-        iconCategory = 'fa-pizza-slice' 
+        iconCategory = 'fi-rr-pizza-slice' 
     } else {
-        iconCategory = 'fa-burger' 
+        iconCategory = 'fi-rr-hamburger' 
     }
 
     return (
@@ -28,14 +28,13 @@ const FoodsGroup = ({ title }) => {
         <>
 
             <div className='d-flex flex-nowrap ps-3 mb-0'>
-                <i className={`fa-solid ${ iconCategory } text-warning`} style={{ fontSize: '1.5rem', marginRight: '0.625rem' }}></i>
+                <i className={`fi ${ iconCategory } text-warning`} style={{ fontSize: '1.5rem', marginRight: '0.625rem' }}></i>
                 <h2 className='text-start fw-semibold' style={{ fontSize: '1.25rem' }}>{ title }</h2>
             </div>
 
 
             <ul style={{ 
                 listStyle: 'none', 
-                padding: 0, 
                 marginBottom: '1.5rem',
                 height: '27rem',
                 width: 'calc(100% - 16px)',
