@@ -18,7 +18,7 @@ const Cart = () => {
     let [ finalDrinksCart, setFinalDrinksCart ] = useState( [] );  
     let [ finalPrice, setFinalPrice ] = useState( 0 );  
 
-    useEffect(() => {
+    useEffect(() => { // useEffect para atualizar el precio final del pedido cada vez que se modifica el carrito de compras (foods o drinks)
 
         let cliente = localStorage.getItem('cliente');
 
@@ -85,7 +85,7 @@ const Cart = () => {
       
     }, []);
 
-    useEffect(() => {
+    useEffect(() => { // Actualiza el precio total del carrito
 
         let priceFoods = 0;
 
@@ -103,7 +103,7 @@ const Cart = () => {
         
     }, [ finalFoodsCart ]);
 
-    useEffect(() => {
+    useEffect(() => { // Actualiza el precio total del carrito 
 
         let priceFoods = 0;
 
@@ -161,7 +161,7 @@ const Cart = () => {
 
         <main className='py-5 px-3'>
             <h1 className='text-white fs-1' style={{ marginBottom: '2.5rem' }}>Mi pedido</h1>
-            <p className='text-white text-start'>Comidas: { finalFoodsCart.length }</p>
+            <p className='text-white text-start'>Comida: { finalFoodsCart.length } <a href="">Agregar mas...</a></p>
 
             <ul className='text-start p-0 mb-4' style={{ listStyle: 'none' }}>
                 { finalFoodsCart.map( ({ id, title, category, price, image, quantity }) => {
@@ -181,7 +181,7 @@ const Cart = () => {
                 })}
             </ul>
 
-            <p className='text-white text-start'>Bebidas: { finalDrinksCart.length }</p>
+            <p className='text-white text-start'>Bebidas: { finalDrinksCart.length } <a href="">Agregar mas...</a></p>
 
             <ul className='text-start p-0 mb-4' style={{ listStyle: 'none' }}>
                 { finalDrinksCart.map( ({ id, title, category, price, image, quantity }) => {

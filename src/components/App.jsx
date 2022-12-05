@@ -5,6 +5,8 @@ import Categories from './Categories';
 import Cart from './Cart';
 import Foods from './menu/Foods';
 import Drinks from './menu/Drinks';
+import Login from './dashboard/Login';
+import HomeDash from './dashboard/HomeDash';
 
 import '../styles/App.css';
 
@@ -19,6 +21,8 @@ function App() {
         <Route path='/foods' element={ <Foods /> } />
         <Route path='/drinks' element={ <Drinks /> } />
         <Route path='/cart' element={ <Cart /> } />
+        <Route path='/login' element={ <Login/> } />
+        <Route path='/dashboard' element={ <HomeDash/> } />
 
       </Routes>
 
