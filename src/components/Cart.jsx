@@ -18,7 +18,7 @@ const Cart = () => {
     let [ finalDrinksCart, setFinalDrinksCart ] = useState( [] );  
     let [ finalPrice, setFinalPrice ] = useState( 0 );  
 
-    useEffect(() => {
+    useEffect(() => { // useEffect para atualizar el precio final del pedido cada vez que se modifica el carrito de compras (foods o drinks)
 
         let cliente = localStorage.getItem('cliente');
 
@@ -85,7 +85,7 @@ const Cart = () => {
       
     }, []);
 
-    useEffect(() => {
+    useEffect(() => { // Actualiza el precio total del carrito
 
         let priceFoods = 0;
 
@@ -103,7 +103,7 @@ const Cart = () => {
         
     }, [ finalFoodsCart ]);
 
-    useEffect(() => {
+    useEffect(() => { // Actualiza el precio total del carrito 
 
         let priceFoods = 0;
 

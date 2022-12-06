@@ -25,7 +25,13 @@ const Home = () => {
   const [table, setTable] = useState("");
   const errorMessage = validate(name, table);
 
+  const dashPage = () => {
+    navigate("/Login"); 
+  }
+
   return (
+    <>
+    
     <main className="d-flex flex-nowrap flex-column justify-content-center align-items-center" style={{ height: '100vh' }} bg="secondary">
       <div className="img mb-4">
         <Image src={logo} alt="Logo del restaurante" width={230} height={120} />
@@ -77,7 +83,21 @@ const Home = () => {
           Continuar
         </Button>
       </div>
+      <br />
+      <br />
+      <Button
+          type="submit"
+          variant='dark'
+          className='fw-bold rounded-pill py-3'
+          style={{ width: '160px' }}
+          onClick={dashPage}
+        >
+          Acceso Admin
+        </Button>
     </main>
+    
+    
+    </>
   );
 };
 
