@@ -161,7 +161,11 @@ const Cart = () => {
 
         <main className='py-5 px-3'>
             <h1 className='text-white fs-1' style={{ marginBottom: '2.5rem' }}>Mi pedido</h1>
-            <p className='text-white text-start'>Comidas: { finalFoodsCart.length }</p>
+
+            <div className='d-flex flex-nowrap align-items-center mb-3'>
+                <i className="fa-solid fa-burger text-warning fs-3 me-2"></i>
+                <p className='text-white text-start p-0 m-0'>Comidas: { finalFoodsCart.length }</p>
+            </div>
 
             <ul className='text-start p-0 mb-4' style={{ listStyle: 'none' }}>
                 { finalFoodsCart.map( ({ id, title, category, price, image, quantity }) => {
@@ -181,7 +185,10 @@ const Cart = () => {
                 })}
             </ul>
 
-            <p className='text-white text-start'>Bebidas: { finalDrinksCart.length }</p>
+            <div className='d-flex flex-nowrap align-items-center mb-3'>
+                <i className="fa-solid fa-wine-glass text-warning fs-3 me-2"></i>
+                <p className='text-white text-start p-0 m-0'>Bebidas: { finalDrinksCart.length }</p>
+            </div>
 
             <ul className='text-start p-0 mb-4' style={{ listStyle: 'none' }}>
                 { finalDrinksCart.map( ({ id, title, category, price, image, quantity }) => {

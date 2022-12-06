@@ -4,7 +4,7 @@
         "title": "Del Campo",
         "price": 1300,
         "description": "Pechuga de pollo gratinada con oliva, pimienta y limon; lechuga, tomate cherry y salsa de la casa, acompañado de papas españolas",
-        "image": "sandwich.jpg",
+        "image": "sandwich-del-campo.png",
         "category" :"sandwiches",
         "available": true
     },
@@ -13,7 +13,7 @@
         "title": "Lomito",
         "price": 1400,
         "description": "Lomo, jamon cocido, queso, huevo, tomate, papas fritas",
-        "image": "sandwich.jpg",
+        "image": "sandwich-lomito.png",
         "category" :"sandwiches",
         "available": true
     },
@@ -22,7 +22,7 @@
         "title": "Jon Snow",
         "price": 1320,
         "description": "Bondiola de cerdo glaseada, tomate, lechuga, cheddar, ciboulette, papas fritas",
-        "image": "sandwich.jpg",
+        "image": "sandwich-jon-snow.png",
         "category" :"sandwiches",
         "available": true
     },
@@ -31,7 +31,7 @@
         "title": "Milanesa",
         "price": 1250,
         "description": "Milanesa de carne o pollo, lechuga, tomate, jamon, queso, panceta, huevo frito, salsa las piedras, papas fritas",
-        "image": "sandwich.jpg",
+        "image": "sandwich-milanesa.png",
         "category" :"sandwiches",
         "available": true
     },
@@ -40,7 +40,7 @@
         "title": "Papas fritas",
         "price": 800,
         "description": "100grs. de papas fritas",
-        "image": "papas.jpg",
+        "image": "papas-fritas.png",
         "category" :"papas",
         "available": true
     },
@@ -49,7 +49,7 @@
         "title": "Papas cheddar",
         "price": 900,
         "description": "100grs. de papas cheddar",
-        "image": "papas.jpg",
+        "image": "papas-cheddar.png",
         "category" :"papas",
         "available": true
     },
@@ -58,7 +58,7 @@
         "title": "Papas revueltas",
         "price": 100,
         "description": "Huevo revuelto, panceta, queso crema y ciboulette",
-        "image": "papas.jpg",
+        "image": "papas-revueltas.png",
         "category" :"papas",
         "available": true
     },
@@ -67,7 +67,7 @@
         "title": "Papas Pulled Pork",
         "price": 980,
         "description": "Papas rústicas, bondiola desmenuzada, salsa barbacoa, cebolla verdeo",
-        "image": "papas.jpg",
+        "image": "papas-pulled-pork.png",
         "category" :"papas",
         "available": true
     },
@@ -76,7 +76,7 @@
         "title": "Muzzarella",
         "price": 1680,
         "description": "Muzzarella, salsa de tomate, orégano y aceitunas",
-        "image": "pizza.jpg",
+        "image": "pizza-muzzarella.png",
         "category" :"pizzas",
         "available": true
     },
@@ -85,7 +85,7 @@
         "title": "Napolitana",
         "price": 1780,
         "description": "Muzzarella, salsa de tomate, provenzal y tomate",
-        "image": "pizza.jpg",
+        "image": "pizza-napolitana.png",
         "category" :"pizzas",
         "available": true
     },
@@ -94,7 +94,7 @@
         "title": "Especial",
         "price": 1850,
         "description": "Muzzarella, salsa de tomate, jamón, huevo, orégano y aceitunas",
-        "image": "pizza.jpg",
+        "image": "pizza-especial.png",
         "category" :"pizzas",
         "available": true
     },
@@ -103,7 +103,7 @@
         "title": "Rúcula",
         "price": 1990,
         "description": "Muzzarella, salsa de tomate, rúcula, jamón crudo, queso sardo y semillas",
-        "image": "pizza.jpg",
+        "image": "pizza-rucula.png",
         "category" :"pizzas",
         "available": true
     },
@@ -112,7 +112,7 @@
         "title": "Genovesa",
         "price": 2100,
         "description": "Muzzarella, salsa de tomate, crema de roquefort, panceta y cebolla caramelizada",
-        "image": "pizza.jpg",
+        "image": "pizza-genovesa.png",
         "category" :"pizzas",
         "available": true
     },
@@ -121,7 +121,7 @@
         "title": "Pollo",
         "price": 2230,
         "description": "Muzzarella, salsa de tomate, pollo, verduras salteadas, mayonesa y kétchup",
-        "image": "pizza.jpg",
+        "image": "pizza-pollo.png",
         "category" :"pizzas",
         "available": true
     },
@@ -130,7 +130,7 @@
         "title": "Carbonara",
         "price": 2250,
         "description": "Muzzarella, salsa de tomate, panceta crocante, tomate cherry, albahaca y huevos fritos",
-        "image": "pizza.jpg",
+        "image": "pizza-especial.png",
         "category" :"pizzas",
         "available": true
     },
@@ -139,7 +139,7 @@
         "title": "Ragnar",
         "price": 1100,
         "description": "Hamburguesa casera, lechuga, panceta, cheddar, cebolla caramelizada, papas fritas",
-        "image": "burger.jpg",
+        "image": "burger-ragnar.png",
         "category" :"burgers",
         "available": true
     },
@@ -148,7 +148,7 @@
         "title": "Floki",
         "price": 1100,
         "description": "Hamburguesa casera, hongos, tomate, queso provoleta, cebolla caramelizada, papas fritas",
-        "image": "burger.jpg",
+        "image": "burger-floki.png",
         "category" :"burgers",
         "available": true
     },
@@ -157,7 +157,7 @@
         "title": "Pinkman",
         "price": 1100,
         "description": "Hamburguesa casera, jamón, huevo frito, muzzarella, morrón asado, papas fritas",
-        "image": "burger.jpg",
+        "image": "burger-pinkman.png",
         "category" :"burgers",
         "available": true
     },
@@ -166,7 +166,7 @@
         "title": "Lannister",
         "price": 1100,
         "description": "Hamburguesa casera, rúcula, roquefort, palta, cebolla caramelizada, papas fritas",
-        "image": "burger.jpg",
+        "image": "burger-lannister.png",
         "category" :"burgers",
         "available": true
     }
