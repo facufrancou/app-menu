@@ -1,15 +1,20 @@
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
+import Image from "react-bootstrap/Image";
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+/* import NavDropdown from 'react-bootstrap/NavDropdown'; */
+
+import logo from "../../assets/logo-alternativo.svg";
 
 function NavBar() {
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="warning" expand="lg">
       <Container fluid>
-        <Navbar.Brand href="#">LOGO DEL BAR</Navbar.Brand>
+        <Navbar.Brand href="#">
+          <Image src={ logo } alt="Logo del restaurante" width={ 100 } height={ 60 } />
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -17,9 +22,9 @@ function NavBar() {
             style={{ maxHeight: '150px' }}
             navbarScroll
           >
-            <Nav.Link href="#action1">Home</Nav.Link>
-            <Nav.Link href="#action2">Comidas</Nav.Link>
-            <Nav.Link href="#">Bebidas</Nav.Link>
+            <Nav.Link href="/dashboard" className='text-dark fw-semibold'>Home</Nav.Link>
+            <Nav.Link href="/dashboard/foods" className='text-dark fw-semibold'>Comidas</Nav.Link>
+            <Nav.Link href="/dashboard/drinks" className='text-dark fw-semibold'>Bebidas</Nav.Link>
           </Nav>
           <Form className="d-flex">
             <Form.Control

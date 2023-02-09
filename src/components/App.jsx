@@ -7,6 +7,12 @@ import Foods from './menu/Foods';
 import Drinks from './menu/Drinks';
 import Login from './dashboard/Login';
 import HomeDash from './dashboard/HomeDash';
+import FoodsDash from './dashboard/FoodsDash';
+import FoodDetailDash from './dashboard/FoodDetailDash';
+import EditFoodDash from './dashboard/EditFoodDash';
+import DrinksDash from './dashboard/DrinksDash';
+import DrinkDetailDash from './dashboard/DrinkDetailDash';
+import EditDrinkDash from './dashboard/EditDrinkDash';
 
 import '../styles/App.css';
 
@@ -23,6 +29,12 @@ function App() {
         <Route path='/cart' element={ <Cart /> } />
         <Route path='/login' element={ <Login/> } />
         <Route path='/dashboard' element={ <HomeDash/> } />
+        <Route path='/dashboard/foods' element={ <FoodsDash /> } />
+        <Route path='/dashboard/foods/:id' element={ <FoodDetailDash /> } />
+        <Route path='/dashboard/foods/edit/:id' element={ <EditFoodDash /> } />
+        <Route path='/dashboard/drinks' element={ <DrinksDash /> } />
+        <Route path='/dashboard/drinks/:id' element={ <DrinkDetailDash /> } />
+        <Route path='/dashboard/drinks/edit/:id' element={ <EditDrinkDash /> } />
 
       </Routes>
 

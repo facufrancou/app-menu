@@ -1,0 +1,146 @@
+[
+    {
+      "id": 1,
+      "day": "Lunes",
+      "date": "2023-1-23",
+      "foods": [{
+        "title": "Hamburguesa clásica",
+        "price": 1200,
+        "quantity": 1,
+        "finalPrice": 1200 
+      }],
+      "drinks": [{
+        "title": "Cerveza",
+        "price": 800,
+        "quantity": 1,
+        "finalPrice": 800 
+      }],
+      "finalAmount": 2000
+    },
+    {
+      "id": 2,
+      "day": "Martes",
+      "date": "2023-1-24",
+      "foods": [{
+        "title": "Hamburguesa clásica",
+        "price": 1200,
+        "quantity": 1,
+        "finalPrice": 1200 
+      }],
+      "drinks": [{
+        "title": "Cerveza",
+        "price": 800,
+        "quantity": 1,
+        "finalPrice": 800 
+      }],
+      "finalAmount": 2000
+    },
+    {
+      "id": 3,
+      "day": "Miércoles",
+      "date": "2023-1-25",
+      "foods": [{
+        "title": "Hamburguesa clásica",
+        "price": 1200,
+        "quantity": 1,
+        "finalPrice": 1200 
+      }],
+      "drinks": [{
+        "title": "Cerveza",
+        "price": 800,
+        "quantity": 1,
+        "finalPrice": 800 
+      }],
+      "finalAmount": 2000
+    },
+    {
+      "id": 4,
+      "day": "Jueves",
+      "date": "2023-1-26",
+      "foods": [{
+        "title": "Hamburguesa clásica",
+        "price": 1200,
+        "quantity": 1,
+        "finalPrice": 1200 
+      }],
+      "drinks": [{
+        "title": "Cerveza",
+        "price": 800,
+        "quantity": 1,
+        "finalPrice": 800 
+      }],
+      "finalAmount": 2000
+    },
+    {
+      "id": 5,
+      "day": "Viernes",
+      "date": "2023-1-27",
+      "foods": [{
+        "title": "Hamburguesa clásica",
+        "price": 1200,
+        "quantity": 1,
+        "finalPrice": 1200 
+      }],
+      "drinks": [{
+        "title": "Cerveza",
+        "price": 800,
+        "quantity": 1,
+        "finalPrice": 800 
+      }],
+      "finalAmount": 2000
+    },
+    {
+      "id": 6,
+      "day": "Sábado",
+      "date": "2023-1-28",
+      "foods": [{
+        "title": "Hamburguesa clásica",
+        "price": 1200,
+        "quantity": 1,
+        "finalPrice": 1200 
+      }],
+      "drinks": [{
+        "title": "Cerveza",
+        "price": 800,
+        "quantity": 1,
+        "finalPrice": 800 
+      }],
+      "finalAmount": 2000
+    },
+    {
+      "id": 7,
+      "day": "Domingo",
+      "date": "2023-1-29",
+      "foods": [{
+        "title": "Hamburguesa clásica",
+        "price": 1200,
+        "quantity": 1,
+        "finalPrice": 1200 
+      }],
+      "drinks": [{
+        "title": "Cerveza",
+        "price": 800,
+        "quantity": 1,
+        "finalPrice": 800 
+      }],
+      "finalAmount": 2000
+    },
+    {
+      "id": 8,
+      "day": "Domingo",
+      "date": "2023-1-29",
+      "foods": [{
+        "title": "Hamburguesa clásica",
+        "price": 1200,
+        "quantity": 1,
+        "finalPrice": 1200 
+      }],
+      "drinks": [{
+        "title": "Cerveza",
+        "price": 800,
+        "quantity": 1,
+        "finalPrice": 800 
+      }],
+      "finalAmount": 1500
+    }
+]
