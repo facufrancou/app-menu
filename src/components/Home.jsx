@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 import Image from "react-bootstrap/Image";
 import Form from "react-bootstrap/Form";
@@ -8,6 +8,20 @@ import Button from "react-bootstrap/Button";
 import logo from "../assets/logo.svg";
 
 const Home = () => {
+
+  /* Validando contenido de inputs  */
+  const [ name, setName ] = useState("");
+  const [ table, setTable ] = useState("");
+  const errorMessage = validate( name, table );
+
+  const [ searchParams, setSearchParams ] = useSearchParams();
+  useEffect(() => {
+
+    let numberTable = searchParams.get( 'mesa' );
+    numberTable !== null ? setTable( numberTable ) : setTable( 0 );
+
+  }, [])
+
   const navigate = useNavigate();
   const nextPage = () => {
 
@@ -20,13 +34,8 @@ const Home = () => {
     navigate("/categories");
   };
 
-  /* Valindando cntenido de imputs  */
-  const [name, setName] = useState("");
-  const [table, setTable] = useState("");
-  const errorMessage = validate(name, table);
-
   const dashPage = () => {
-    navigate("/Login"); 
+    navigate("/login"); 
   }
 
   return (
@@ -34,12 +43,13 @@ const Home = () => {
     
     <main className="d-flex flex-nowrap flex-column justify-content-center align-items-center" style={{ height: '100vh' }} bg="secondary">
       <div className="img mb-4">
-        <Image src={logo} alt="Logo del restaurante" width={230} height={120} />
+        <Image src={ logo } alt="Logo del restaurante" width={ 230 } height={ 120 } />
       </div>
 
       <div className="container">
         <h1>Bienvenid@!</h1>
-        <p>Para continuar, debes ingresar tu nombre y el número de mesa</p>
+        <p>Para continuar, debes ingresar tu nombre</p>
+        <p className="fw-bolder text-warning">Número de mesa: { table }</p>
 
         <Form
           className="container col-md-3 form-home"
@@ -54,43 +64,30 @@ const Home = () => {
             value={name}
             onChange={(ev) => setName(ev.target.value)}
             placeholder="Nombre"
+            className="mb-3"
           />
-          <br />
-
-          <Form.Control
-            type="text"
-            name="table"
-            id="table"
-            value={table}
-            onChange={(ev) => setTable(ev.target.value)}
-            placeholder="Número de mesa"
-          />
-          <br />
         </Form>
       </div>
 
       <div className="button">
-        <p className="">{errorMessage}</p>
+        <p className="">{ errorMessage }</p>
         <Button
           type="submit"
           variant='warning'
-          className='fw-bold rounded-pill py-3'
+          className='fw-bold rounded-pill py-3 mb-4'
           style={{ width: '160px' }}
-          /* variant="success" */
-          disabled={errorMessage}
-          onClick={nextPage}
+          disabled={ errorMessage }
+          onClick={ nextPage }
         >
           Continuar
         </Button>
       </div>
-      <br />
-      <br />
       <Button
           type="submit"
           variant='dark'
           className='fw-bold rounded-pill py-3'
           style={{ width: '160px' }}
-          onClick={dashPage}
+          onClick={ dashPage }
         >
           Acceso Admin
         </Button>
@@ -103,7 +100,6 @@ const Home = () => {
 
 const validate = (name, table) => {
   if (name === "") return "Tienes que ingresar un nombre para continuar";
-  if (table === "" ?? table === isNaN) return "Tienes que ingresar un número de mesa para continuar";
 };
 
 export default Home;
