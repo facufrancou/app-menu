@@ -6,7 +6,7 @@ const ChartHomeDash = ({ chartData, title }) => {
 
     return (
 
-        <div className='py-4 px-4 bg-transparent border border-warning border-3 mx-auto mb-4' style={{ width: '400px', height:'300px' }}>
+        <div className='w-100 py-4 px-4 bg-transparent border border-warning border-3 mx-auto mb-4' style={{ maxWidth: '800px' }}>
 
             <h2 className='fs-3 text-center m-0 mb-2'>{ title }</h2>
 

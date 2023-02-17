@@ -1,10 +1,12 @@
 import { useState } from 'react';
 
 import CardHomeDash from './CardHomeDash';
-import ChartHomeDash from './ChartHomeDash';
+import ChartHomeDash from './BarChartDash';
 import NavBar from './NavBar';
 
-let sales = require('../../data/sales.json')
+let dataDrinks = require('../../data/menuDrinks.json');
+let dataFoods = require('../../data/menuFoods.json');
+let dataSales = require('../../data/sales.json');
 
 
 const HomeDash = () => {
@@ -24,35 +26,100 @@ const HomeDash = () => {
     /* const fecha = new Date();
     const mesActual = fecha.getMonth() + 1; */
 
-    let finalAmounts = {
-        lunes: 0,
-        martes: 0,
-        miércoles: 0,
-        jueves: 0,
-        viernes: 0,
-        sábado: 0,
-        domingo: 0,
-    }
+    const date = new Date();
+    
+    const [ year, month, day ] = [
+        date.getFullYear(),
+        date.getMonth(),
+        date.getDate()
+    ];
 
-    sales.map(( data ) => {
-        finalAmounts[data.day.toLowerCase()] = finalAmounts[data.day.toLowerCase()] + data.finalAmount
+    const actualDate = year + '-' + ( month + 1 ) + '-' + day;
+
+    const dailySales = dataSales.filter( sale => {
+        return sale.date === actualDate;
     })
 
-    let arrayFinalAmounts =  Object.values( finalAmounts );
+    let totalDailyAmount = 0;
+
+    dailySales.forEach( sale => {
+        sale.foods.forEach( food => {
+            totalDailyAmount += food.finalPrice
+        })
+        sale.drinks.forEach( drink => {
+            totalDailyAmount += drink.finalPrice
+        })
+    })
+
+    let arrayClients = [];
+
+    dataSales.forEach( sale => {
+        if( !arrayClients.includes( sale.client ) ){
+            arrayClients.push( sale.client );
+        }
+    })
+
+    let arrayDatesThisWeek = [];
+
+    arrayDatesThisWeek.push( actualDate );
+
+    for ( let i = 0; i < 6; i++ ) {
+        date.setDate( date.getDate() - 1 );
+        
+        let [ year, month, day ] = [
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate()
+        ];
+    
+        let currentDate = year + '-' + ( month + 1 ) + '-' + day;
+
+        arrayDatesThisWeek.push( currentDate );
+    }
+    
+    let weeklySales = dataSales.filter( sale => {
+        return arrayDatesThisWeek.includes( sale.date );
+    });
+
+    arrayDatesThisWeek = arrayDatesThisWeek.sort();
+
+    let finalAmountsWeekly = {};
+
+    arrayDatesThisWeek.map( date  => {
+        finalAmountsWeekly[ date ] = 0;
+    })
+
+    weeklySales.map( sale  => {
+        finalAmountsWeekly[ sale.date ] = finalAmountsWeekly[ sale.date ] + sale.finalAmount;
+    })
+
+    let arrayFinalAmountsWeekly =  Object.values( finalAmountsWeekly );
+
+    let arrayNameDatesThisWeek = [];
+    
+    arrayDatesThisWeek.map( date => {
+
+        let daysWeek = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+
+        let dateChanging = new Date( date );
+        let nameDayWeek = dateChanging.getDay();
+        
+        arrayNameDatesThisWeek.push( daysWeek[ nameDayWeek ] );
+    })
 
     const [ chartData, setChartData ] = useState({
-        labels: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'], 
+        labels: arrayNameDatesThisWeek, 
         datasets: [{
             label: "Ganancias",
-            data: arrayFinalAmounts.map(( data ) => data),
+            data: arrayFinalAmountsWeekly.map(( data ) => data),
             backgroundColor: [
-                "rgba(75,192,192,1)",
-                "#ecf0f1",
-                "#50AF95",
-                "#f3ba2f",
-                "#2a71d0",
-                "pink",
-                "orange"
+                "#3e4144",
+                "#5e5e5e",
+                "#6f6f6f",
+                "#828282",
+                "#aaaaaa",
+                "#c6c6c6",
+                "#ffffff",
             ],
             borderColor: "black",
             borderWidth: 2
@@ -74,12 +141,18 @@ const HomeDash = () => {
         12: 0
     }
 
-    sales.map(( data ) => {
-        const newFormatDate = data.date.replaceAll('-', ', ');
-        const date = new Date( newFormatDate );
+    let annualSales = dataSales.filter( sale => {
+        let dateJSON = new Date( sale.date );
+        let yearJSON = dateJSON.getFullYear();
+
+        return yearJSON === year;
+    })
+
+    annualSales.map(( data ) => {
+        const date = new Date( data.date );
         const month = date.getMonth() + 1;
         
-        finalAmountsMonthly[month] = finalAmountsMonthly[month] + data.finalAmount
+        finalAmountsMonthly[ month ] = finalAmountsMonthly[ month ] + data.finalAmount
     })
 
     let arrayFinalAmountsMonthly =  Object.values( finalAmountsMonthly );
@@ -90,13 +163,18 @@ const HomeDash = () => {
             label: "Ganancias",
             data: arrayFinalAmountsMonthly.map(( data ) => data),
             backgroundColor: [
-                "rgba(75,192,192,1)",
-                "#ecf0f1",
-                "#50AF95",
-                "#f3ba2f",
-                "#2a71d0",
-                "pink",
-                "orange"
+                "#666f88",
+                "#788199",
+                "#8990a2",
+                "#a3a8b7",
+                "#b5bac9",
+                "#c6c6c6",
+                "#aaaaaa",
+                "#828282",
+                "#6f6f6f",
+                "#5e5e5e",
+                "#45484a",
+                "#3e4144"
             ],
             borderColor: "black",
             borderWidth: 2
@@ -112,48 +190,49 @@ const HomeDash = () => {
 
                 <h1>Dashboard Restaurante Saturno</h1>
 
-                <div className='d-flex flex-wrap justify-content-between align-items-center mt-5'>
+                <div className='d-flex flex-wrap justify-content-between align-items-center mt-5 mb-4'>
 
                     <CardHomeDash 
                         icon = 'fa-solid fa-burger'
                         title = 'Comidas disponibles'
-                        quantity = '19'
+                        quantity = { dataFoods.length }
+                        link = '/foods'
                     />
 
                     <CardHomeDash 
                         icon = 'fa-solid fa-wine-glass'
                         title = 'Bebidas disponibles'
-                        quantity = '23'
+                        quantity = { dataDrinks.length }
+                        link = '/drinks'
+                    />
+
+                    <CardHomeDash 
+                        icon = 'fa-solid fa-users'
+                        title = 'Total de Clientes'
+                        quantity = { arrayClients.length }
+                        link = '/sales'
                     />
 
                     <CardHomeDash 
                         icon = 'fa-solid fa-file-invoice-dollar'
                         title = 'Ventas del día'
-                        quantity = '23'
+                        quantity = { dailySales.length }
+                        link = '/sales/daily'
                     />
 
                     <CardHomeDash 
                         icon = 'fa-solid fa-money-bill-trend-up'
                         title = 'Ganancias del día'
-                        quantity = '$2023'
+                        quantity = { `$${ totalDailyAmount }` }
+                        link = '/sales/daily'
                     />
 
-                    <CardHomeDash 
-                        icon = 'fa-solid fa-money-bill-trend-up'
-                        title = 'Ganancias del día'
-                        quantity = '$2023'
-                    />
+                </div>
 
-                    <CardHomeDash 
-                        icon = 'fa-solid fa-money-bill-trend-up'
-                        title = 'Ganancias del día'
-                        quantity = '$2023'
-                    />
-
+                <div>
                     <ChartHomeDash chartData={ chartData } title='Ganancias ventas de esta semana' />
 
                     <ChartHomeDash chartData={ chartDataMonthly } title='Ganancias ventas en el año' />
-
                 </div>
 
             </div>

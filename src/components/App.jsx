@@ -13,6 +13,12 @@ import EditFoodDash from './dashboard/EditFoodDash';
 import DrinksDash from './dashboard/DrinksDash';
 import DrinkDetailDash from './dashboard/DrinkDetailDash';
 import EditDrinkDash from './dashboard/EditDrinkDash';
+import Sales from './dashboard/Sales';
+import DailySales from './dashboard/DailySales';
+import WeeklySales from './dashboard/WeeklySales';
+import MonthlySales from './dashboard/MonthlySales';
+import AnnualSales from './dashboard/AnnualSales';
+import SaleDetail from './dashboard/SaleDetail';
 
 import '../styles/App.css';
 
@@ -35,6 +41,12 @@ function App() {
         <Route path='/dashboard/drinks' element={ <DrinksDash /> } />
         <Route path='/dashboard/drinks/:id' element={ <DrinkDetailDash /> } />
         <Route path='/dashboard/drinks/edit/:id' element={ <EditDrinkDash /> } />
+        <Route path='/dashboard/sales' element={ <Sales /> } />
+        <Route path='/dashboard/sales/daily' element={ <DailySales /> } />
+        <Route path='/dashboard/sales/weekly' element={ <WeeklySales /> } />
+        <Route path='/dashboard/sales/monthly' element={ <MonthlySales /> } />
+        <Route path='/dashboard/sales/annual' element={ <AnnualSales /> } />
+        <Route path='/dashboard/sales/:id' element={ <SaleDetail /> } />
 
       </Routes>
 
