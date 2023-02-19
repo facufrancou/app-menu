@@ -8,9 +8,9 @@ import Pagination from 'react-bootstrap/Pagination';
 
 import NavBar from './NavBar';
 
-import '../../styles/dashboard.css';
+import authenticatedRoute from '../../auth/AuthenticatedRoute';
 
-let dataSales = require('../../data/sales.json');
+import '../../styles/dashboard.css';
 
 
 const Sales = () => {
@@ -26,13 +26,26 @@ const Sales = () => {
     
     useEffect(() => {
 
-        let firstSales = dataSales.slice(0, 10);
-        setActiveSales( firstSales );
-        setFullSales( dataSales );
+        const getSales = async () => {
+
+            let listSales = [];
+
+            await fetch('http://localhost:3030/sales')
+                .then(( response ) => response.json())
+                .then(( data ) => {
+                    listSales = data.sales;
+                })
+                .catch((e) => console.log(e));
+
+            let firstSales = listSales.slice(0, 10);
+            setActiveSales( firstSales );
+            setFullSales( listSales );
+
+        }
+
+        getSales();
       
     }, []);
-
-    dataSales = dataSales.sort( ( a, b ) => b.id - a.id );
 
     const searchRealTime = (e) => {
         setSearch( e.target.value );
@@ -231,4 +244,4 @@ const Sales = () => {
     )
 }
 
-export default Sales;
+export default authenticatedRoute( Sales );

@@ -10,53 +10,15 @@ import CardHomeDash from './CardHomeDash';
 import PieChartDash from './PieChartDash';
 import NavBar from './NavBar';
 
-import '../../styles/dashboard.css';
+import authenticatedRoute from '../../auth/AuthenticatedRoute';
 
-let dataSales = require('../../data/sales.json');
+import '../../styles/dashboard.css';
 
 
 const AnnualSales = () => {
 
     let actualDate = new Date();
     let actualYear = actualDate.getFullYear();
-
-    let annualSales = dataSales.filter( sale => {
-
-        let dateJSON = new Date( sale.date );
-        let yearJSON = dateJSON.getFullYear();
-
-        return yearJSON === actualYear;
-    })
-
-    annualSales = annualSales.sort( ( a, b ) => b.id - a.id );
-
-    let totalAmountFoods = 0;
-    let totalAmountDrinks = 0;
-
-    annualSales.forEach( sale => {
-        sale.foods.forEach( food => {
-            totalAmountFoods += food.finalPrice
-        })
-        sale.drinks.forEach( drink => {
-            totalAmountDrinks += drink.finalPrice
-        })
-    })
-
-    const arrayItemsDataChart = [ totalAmountFoods, totalAmountDrinks ];
-
-    const [ chartData, setChartData ] = useState({
-        labels: ['Comidas', 'Bebidas'], 
-        datasets: [{
-            label: "Ganancias",
-            data: arrayItemsDataChart.map( amount => amount ),
-            backgroundColor: [
-                "#AAAAAA",
-                "#ECF0F1"
-            ],
-            borderColor: "black",
-            borderWidth: 2,
-        }]
-    });
 
     let [ fullSales, setFullSales ] = useState( [] );
     let [ activeSales, setActiveSales ] = useState( [] );
@@ -67,10 +29,49 @@ const AnnualSales = () => {
     let [ activePage, setActivePage ] = useState( 1 );
     let [ search, setSearch ] = useState('');
 
+    let [ finalAmount, setFinalAmount ] = useState(0);
+    let [ chartData, setChartData ] = useState({});
+    let [ isLoad, setLoad ] = useState( true );
+
     useEffect(() => {
-        let firstSales = annualSales.slice(0, 10);
-        setActiveSales( firstSales );
-        setFullSales( annualSales );
+
+        const getSales = async () => {
+
+            let listSales = [];
+            let arrayItemsDataChart = [];
+
+            await fetch('http://localhost:3030/sales/annual')
+                .then(( response ) => response.json())
+                .then(( data ) => {
+                    listSales = data.sales;
+                    setFinalAmount( data.finalAmount );
+                    arrayItemsDataChart = data.arrayItemsDataChart;
+                })
+                .catch((e) => console.log(e));
+
+            let firstSales = listSales.slice(0, 10);
+            setActiveSales( firstSales );
+            setFullSales( listSales );
+
+            setChartData({
+                labels: ['Comidas', 'Bebidas'], 
+                datasets: [{
+                    label: "Ganancias",
+                    data: arrayItemsDataChart.map( amount => amount ),
+                    backgroundColor: [
+                        "#AAAAAA",
+                        "#ECF0F1"
+                    ],
+                    borderColor: "black",
+                    borderWidth: 2,
+                }]
+            });
+            
+            setLoad( false );
+        }
+        
+        getSales();
+      
     }, []);
 
     const searchRealTime = (e) => {
@@ -195,19 +196,23 @@ const AnnualSales = () => {
                     <CardHomeDash 
                         icon = 'fa-solid fa-file-invoice-dollar'
                         title = 'Ventas del año'
-                        quantity = { annualSales.length }
+                        quantity = { fullSales.length }
                     />
 
                     <CardHomeDash 
                         icon = 'fa-solid fa-money-bill-trend-up'
                         title = 'Ganancias del año'
-                        quantity = { `$${ totalAmountFoods + totalAmountDrinks }` }
+                        quantity = { `$${ finalAmount }` }
                     />
 
-                    <PieChartDash 
-                        chartData={ chartData } 
-                        title='Ganancias comidas-bebidas del año' 
-                    />
+                    {
+                        !isLoad && 
+
+                        <PieChartDash 
+                            chartData={ chartData } 
+                            title='Ganancias comidas-bebidas del mes' 
+                        />
+                    }
 
                 </div>
 
@@ -288,4 +293,4 @@ const AnnualSales = () => {
     )
 }
 
-export default AnnualSales;
+export default authenticatedRoute( AnnualSales );

@@ -1,15 +1,36 @@
+import { useEffect, useState } from 'react';
 import FoodItem from './FoodItem';
 
 import '../../styles/foodsGroup.css';
 
-let dataFoods = require('../../data/menuFoods.json');
-
 
 const FoodsGroup = ({ title }) => {
 
-    let foodsFilter = dataFoods.filter( food => {
-        return food.category.toLowerCase() === title.toLowerCase();
-    });
+    let [ foods, setFoods ] = useState( [] );
+
+    useEffect(() => {
+
+        const getFoods = async () => {
+
+            let listFoods = [];
+
+            await fetch('http://localhost:3030/foods')
+                .then(( response ) => response.json())
+                .then(( data ) => {
+                    listFoods = data.foods;
+                })
+                .catch((e) => console.log(e));
+
+            let foodsFilter = listFoods.filter( food => {
+                return food.category.toLowerCase() === title.toLowerCase();
+            });
+
+            setFoods( foodsFilter );
+        }
+
+        getFoods();
+
+    }, []);
 
     let iconCategory = '';
 
@@ -42,7 +63,7 @@ const FoodsGroup = ({ title }) => {
                 whiteSpace: 'nowrap',
                 padding: '1rem',
             }}>
-                { foodsFilter.map( ({ id, title, price, description, image }) => {
+                { foods.map( ({ id, title, price, description, image }) => {
                     return <FoodItem id={ id } 
                                     title={ title } 
                                     price={ price } 

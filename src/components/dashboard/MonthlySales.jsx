@@ -10,55 +10,16 @@ import CardHomeDash from './CardHomeDash';
 import PieChartDash from './PieChartDash';
 import NavBar from './NavBar';
 
-import '../../styles/dashboard.css';
+import authenticatedRoute from '../../auth/AuthenticatedRoute';
 
-let dataSales = require('../../data/sales.json');
+import '../../styles/dashboard.css';
 
 
 const MonthlySales = () => {
 
-    let actualDate = new Date();
-    let actualMonth = actualDate.getMonth();
+    let date = new Date();
     let arrayMonths = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
-    actualDate = actualDate.getFullYear() + '-' + ( actualMonth + 1 );
-
-    let monthlySales = dataSales.filter( sale => {
-
-        let dateJSON = new Date( sale.date );
-        dateJSON = dateJSON.getFullYear() + '-' + ( dateJSON.getMonth() + 1 );
-
-        return dateJSON === actualDate;
-    })
-
-    monthlySales = monthlySales.sort( ( a, b ) => b.id - a.id );
-
-    let totalAmountFoods = 0;
-    let totalAmountDrinks = 0;
-
-    monthlySales.forEach( sale => {
-        sale.foods.forEach( food => {
-            totalAmountFoods += food.finalPrice
-        })
-        sale.drinks.forEach( drink => {
-            totalAmountDrinks += drink.finalPrice
-        })
-    })
-
-    const arrayItemsDataChart = [ totalAmountFoods, totalAmountDrinks ];
-
-    const [ chartData, setChartData ] = useState({
-        labels: ['Comidas', 'Bebidas'], 
-        datasets: [{
-            label: "Ganancias",
-            data: arrayItemsDataChart.map( amount => amount ),
-            backgroundColor: [
-                "#AAAAAA",
-                "#ECF0F1"
-            ],
-            borderColor: "black",
-            borderWidth: 2,
-        }]
-    });
+    let actualMonth = arrayMonths[ date.getMonth() ];
 
     let [ fullSales, setFullSales ] = useState( [] );
     let [ activeSales, setActiveSales ] = useState( [] );
@@ -69,10 +30,49 @@ const MonthlySales = () => {
     let [ activePage, setActivePage ] = useState( 1 );
     let [ search, setSearch ] = useState('');
 
+    let [ finalAmount, setFinalAmount ] = useState(0);
+    let [ chartData, setChartData ] = useState({});
+    let [ isLoad, setLoad ] = useState( true );
+
     useEffect(() => {
-        let firstSales = monthlySales.slice(0, 10);
-        setActiveSales( firstSales );
-        setFullSales( monthlySales );
+
+        const getSales = async () => {
+
+            let listSales = [];
+            let arrayItemsDataChart = [];
+
+            await fetch('http://localhost:3030/sales/monthly')
+                .then(( response ) => response.json())
+                .then(( data ) => {
+                    listSales = data.sales;
+                    setFinalAmount( data.finalAmount );
+                    arrayItemsDataChart = data.arrayItemsDataChart;
+                })
+                .catch((e) => console.log(e));
+
+            let firstSales = listSales.slice(0, 10);
+            setActiveSales( firstSales );
+            setFullSales( listSales );
+
+            setChartData({
+                labels: ['Comidas', 'Bebidas'], 
+                datasets: [{
+                    label: "Ganancias",
+                    data: arrayItemsDataChart.map( amount => amount ),
+                    backgroundColor: [
+                        "#AAAAAA",
+                        "#ECF0F1"
+                    ],
+                    borderColor: "black",
+                    borderWidth: 2,
+                }]
+            });
+            
+            setLoad( false );
+        }
+        
+        getSales();
+      
     }, []);
 
     const searchRealTime = (e) => {
@@ -190,26 +190,30 @@ const MonthlySales = () => {
             
             <div className='py-5 px-4'>
 
-                <h1>Ventas { arrayMonths[ actualMonth ] } - Restaurante Saturno</h1>
+                <h1>Ventas { actualMonth } - Restaurante Saturno</h1>
 
                 <div className='d-flex flex-wrap justify-content-between align-items-center mt-5 mb-3'>
 
                     <CardHomeDash 
                         icon = 'fa-solid fa-file-invoice-dollar'
                         title = 'Ventas del mes'
-                        quantity = { monthlySales.length }
+                        quantity = { fullSales.length }
                     />
 
                     <CardHomeDash 
                         icon = 'fa-solid fa-money-bill-trend-up'
                         title = 'Ganancias del mes'
-                        quantity = { `$${ totalAmountFoods + totalAmountDrinks }` }
+                        quantity = { `$${ finalAmount }` }
                     />
 
-                    <PieChartDash 
-                        chartData={ chartData } 
-                        title='Ganancias comidas-bebidas del mes' 
-                    />
+                    {
+                        !isLoad && 
+
+                        <PieChartDash 
+                            chartData={ chartData } 
+                            title='Ganancias comidas-bebidas del mes' 
+                        />
+                    }
 
                 </div>
 
@@ -290,4 +294,4 @@ const MonthlySales = () => {
     )
 }
 
-export default MonthlySales;
+export default authenticatedRoute( MonthlySales );

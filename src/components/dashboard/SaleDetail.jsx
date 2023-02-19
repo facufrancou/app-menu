@@ -4,7 +4,8 @@ import { useParams } from 'react-router-dom';
 import NavBar from './NavBar';
 import SaleDetailItem from './SaleDetailItem';
 
-let dataSales = require('../../data/sales.json');
+import authenticatedRoute from '../../auth/AuthenticatedRoute';
+
 
 const SaleDetail = () => {
 
@@ -16,10 +17,21 @@ const SaleDetail = () => {
 
     useEffect(() => {
 
-        let saleFromJSON = dataSales.filter( saleJSON => saleJSON.id === id );
-        setSale( saleFromJSON[0] );
-        setLoad( false );
+        const getSales = async () => {
 
+            await fetch(`http://localhost:3030/sales/${ id }`)
+                .then(( response ) => response.json())
+                .then(( data ) => {
+                    setSale( data.sale );
+                })
+                .catch((e) => console.log(e));
+    
+            setLoad( false );
+            
+        }
+
+        getSales();
+        
     }, []);
 
     return (
@@ -100,4 +112,4 @@ const SaleDetail = () => {
     )
 }
 
-export default SaleDetail;
+export default authenticatedRoute( SaleDetail );

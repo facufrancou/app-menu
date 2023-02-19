@@ -126,6 +126,22 @@ const Cart = () => {
 
     let sendOrder = () => {
 
+        let finalAmount = finalPrice + ( finalPrice * 0.21 );
+
+        const formData = new FormData();
+        formData.append('client', name);
+        formData.append('foods', JSON.stringify( finalFoodsCart ));
+        formData.append('drinks', JSON.stringify( finalDrinksCart ));
+        formData.append('finalAmount', finalAmount.toString());
+        
+        fetch('http://localhost:3030/sales/new', {
+            method: "POST",
+            body: formData,
+        })
+        .then(response => {
+            return response.json()
+        });
+
         let foodsWhatsApp = [];
 
         finalFoodsCart.map( ({ title, price, quantity }) => {

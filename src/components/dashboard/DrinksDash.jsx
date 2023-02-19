@@ -1,12 +1,67 @@
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
 import Table from 'react-bootstrap/Table';
 
 import NavBar from './NavBar';
 
-let dataDrinks = require('../../data/menuDrinks.json');
+import authenticatedRoute from '../../auth/AuthenticatedRoute';
 
 
 const DrinksDash = () => {
+
+    let [ drinks, setDrinks ] = useState( [] );
+    let [ activeDrinks, setActiveDrinks ] = useState( [] );
+
+    let [ search, setSearch ] = useState('');
+
+    useEffect(() => {
+
+        fetch('http://localhost:3030/drinks')
+            .then(( response ) => response.json())
+            .then(( data ) => {
+                setDrinks( data.drinks );
+                setActiveDrinks( data.drinks );
+            })
+            .catch((e) => console.log(e));
+
+    }, []);
+
+    const searchRealTime = (e) => {
+        setSearch( e.target.value );
+        filter( e.target.value );
+    };
+
+    const filter = ( wordSearched ) => {
+
+        let resultSearch = drinks.filter( ( drink ) => {
+            if (
+                drink.title
+                    .toLowerCase()
+                    .includes( wordSearched.toLowerCase() ) ||
+                drink.category
+                    .toLowerCase()
+                    .includes( wordSearched.toLowerCase() ) ||
+                drink.description
+                    .toLowerCase()
+                    .includes( wordSearched.toLowerCase() )
+            ) {
+                return drink;
+            }
+        });
+
+        setActiveDrinks( resultSearch );
+
+    };
+
+    const navigate = useNavigate();
+    
+    const goCreatePage = () => {
+        navigate('/dashboard/drinks/create');
+    }
 
     return (
 
@@ -17,6 +72,15 @@ const DrinksDash = () => {
             <div className='py-5 px-4'>
 
                 <h1 className='mb-4'>Lista de bebidas</h1>
+
+                <Button className='bg-transparent border-warning text-warning fs-5 fw-bold py-2 px-4 mb-4' onClick={ goCreatePage }>Crear bebida</Button>
+                
+                <InputGroup className='container mb-4' onChange={ searchRealTime }>
+                    <InputGroup.Text className='bg-warning text-dark fw-bold' value={ search }>
+                        Buscar bebida:
+                    </InputGroup.Text>
+                    <Form.Control />
+                </InputGroup>
                 
                 <Table striped bordered hover className='border-warning'>
                     <thead className='bg-warning border-text'>
@@ -31,7 +95,7 @@ const DrinksDash = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        { dataDrinks.map( ( drink, i ) => {
+                        { activeDrinks.map( ( drink, i ) => {
                             return (
                                 <tr key={ i }>
                                     <td className='text-light'>{ drink.id }</td>
@@ -66,4 +130,4 @@ const DrinksDash = () => {
     )
 }
 
-export default DrinksDash;
+export default authenticatedRoute( DrinksDash );

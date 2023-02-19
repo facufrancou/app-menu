@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 
 import NavBar from './NavBar';
 
-let dataFoods = require('../../data/menuFoods.json');
+import authenticatedRoute from '../../auth/AuthenticatedRoute';
 
 
 const FoodDetailDash = () => {
@@ -18,11 +18,15 @@ const FoodDetailDash = () => {
 
     useEffect(() => {
 
-        let foodFromJSON = dataFoods.filter( foodJSON => foodJSON.id === id );
-        setFood( foodFromJSON[0] );    
+        fetch(`http://localhost:3030/foods/${ id }`)
+            .then(( response ) => response.json())
+            .then(( data ) => {
+                setFood( data.food );
+            })
+            .catch((e) => console.log(e));
         setLoad( false );
 
-    }, [])
+    }, []);
 
     const navigate = useNavigate();
 
@@ -32,18 +36,14 @@ const FoodDetailDash = () => {
 
     const unavailableFood = () => {
         
-        let newJSONFoods = [];
-
-        dataFoods.forEach( foodJSON => {
-            if( foodJSON.id === food.id ) {
-                newJSONFoods.push({
-                    ...food,
-                    available: false
-                })
-            } else {
-                newJSONFoods.push( food )
-            }
+        fetch(`http://localhost:3030/foods/unavailable/${ id }`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'Application/json',
+            },
+            body: JSON.stringify( food ),
         })
+            .then(response => response.json())
 
         navigate('/dashboard/foods');
     };
@@ -62,7 +62,7 @@ const FoodDetailDash = () => {
 
                     <div className='col-12 col-lg-4 mx-auto'>
                         { !isLoad && 
-                            <img src={ require(`../../assets/${ food.image }`) } alt={`Imagen de ${ food.title }`} style={{ width: '100%', maxWidth: '350px' }} className='mb-3' /> 
+                            <img src={ `http://localhost:3030/img/foods/${ food.image }` } alt={`Imagen de ${ food.title }`} style={{ width: '100%', maxWidth: '350px' }} className='mb-3' /> 
                         }
                         <div className='d-flex justify-content-evenly align-items-center mb-4'>
                             <Button variant='warning' className='fw-bold' onClick={ nextPageEdit }>Editar comida</Button>
@@ -87,4 +87,4 @@ const FoodDetailDash = () => {
     )
 }
 
-export default FoodDetailDash;
+export default authenticatedRoute( FoodDetailDash );

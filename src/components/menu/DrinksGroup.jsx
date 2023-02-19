@@ -1,14 +1,36 @@
+import { useEffect, useState } from 'react';
 import DrinkItem from './DrinkItem';
 
 import '../../styles/drinksGroup.css';
 
-let dataDrinks = require('../../data/menuDrinks.json');
 
 const DrinksGroup = ({ title }) => {
 
-    let drinksFilter = dataDrinks.filter( drink => {
-        return drink.category.toLowerCase() === title.toLowerCase();
-    });
+    let [ drinks, setDrinks ] = useState( [] );
+
+    useEffect(() => {
+
+        const getDrinks = async () => {
+
+            let listDrinks = [];
+
+            await fetch('http://localhost:3030/drinks')
+                .then(( response ) => response.json())
+                .then(( data ) => {
+                    listDrinks = data.drinks;
+                })
+                .catch((e) => console.log(e));
+
+            let drinksFilter = listDrinks.filter( drink => {
+                return drink.category.toLowerCase() === title.toLowerCase();
+            });
+
+            setDrinks( drinksFilter );
+        }
+
+        getDrinks();
+
+    }, []);
 
     let iconCategory = '';
 
@@ -41,7 +63,7 @@ const DrinksGroup = ({ title }) => {
                 whiteSpace: 'nowrap',
                 padding: '1rem',
             }}>
-                { drinksFilter.map( ({ id, title, price, description, image }) => {
+                { drinks.map( ({ id, title, price, description, image }) => {
                     return <DrinkItem id={ id } 
                                     title={ title } 
                                     price={ price } 

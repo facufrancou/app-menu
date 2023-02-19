@@ -10,54 +10,12 @@ import CardHomeDash from './CardHomeDash';
 import PieChartDash from './PieChartDash';
 import NavBar from './NavBar';
 
-import '../../styles/dashboard.css';
+import authenticatedRoute from '../../auth/AuthenticatedRoute';
 
-let dataSales = require('../../data/sales.json');
+import '../../styles/dashboard.css';
 
 
 const DailySales = () => {
-
-    const date = new Date();
-    
-    const [ year, month, day ] = [
-        date.getFullYear(),
-        date.getMonth(),
-        date.getDate()
-    ];
-
-    const actualDate = year + '-' + ( month + 1 ) + '-' + day;
-
-    const dailySales = dataSales.filter( sale => {
-        return sale.date === actualDate;
-    })
-
-    let totalAmountFoods = 0;
-    let totalAmountDrinks = 0;
-
-    dailySales.forEach( sale => {
-        sale.foods.forEach( food => {
-            totalAmountFoods += food.finalPrice
-        })
-        sale.drinks.forEach( drink => {
-            totalAmountDrinks += drink.finalPrice
-        })
-    })
-
-    const arrayItemsDataChart = [ totalAmountFoods, totalAmountDrinks ];
-
-    const [ chartData, setChartData ] = useState({
-        labels: ['Comidas', 'Bebidas'], 
-        datasets: [{
-            label: "Ganancias",
-            data: arrayItemsDataChart.map( amount => amount ),
-            backgroundColor: [
-                "#AAAAAA",
-                "#ECF0F1"
-            ],
-            borderColor: "black",
-            borderWidth: 2,
-        }]
-    });
 
     let [ fullSales, setFullSales ] = useState( [] );
     let [ activeSales, setActiveSales ] = useState( [] );
@@ -67,11 +25,50 @@ const DailySales = () => {
     });
     let [ activePage, setActivePage ] = useState( 1 );
     let [ search, setSearch ] = useState('');
+
+    let [ finalAmount, setFinalAmount ] = useState(0);
+    let [ chartData, setChartData ] = useState({});
+    let [ isLoad, setLoad ] = useState( true );
     
     useEffect(() => {
-        let firstSales = dailySales.slice(0, 10);
-        setActiveSales( firstSales );
-        setFullSales( dailySales );
+
+        const getSales = async () => {
+
+            let listSales = [];
+            let arrayItemsDataChart = [];
+
+            await fetch('http://localhost:3030/sales/daily')
+                .then(( response ) => response.json())
+                .then(( data ) => {
+                    listSales = data.sales;
+                    setFinalAmount( data.finalAmount );
+                    arrayItemsDataChart = data.arrayItemsDataChart;
+                })
+                .catch((e) => console.log(e));
+
+            let firstSales = listSales.slice(0, 10);
+            setActiveSales( firstSales );
+            setFullSales( listSales );
+
+            setChartData({
+                labels: ['Comidas', 'Bebidas'], 
+                datasets: [{
+                    label: "Ganancias",
+                    data: arrayItemsDataChart.map( amount => amount ),
+                    backgroundColor: [
+                        "#AAAAAA",
+                        "#ECF0F1"
+                    ],
+                    borderColor: "black",
+                    borderWidth: 2,
+                }]
+            });
+            
+            setLoad( false );
+        }
+        
+        getSales();
+      
     }, []);
 
     const searchRealTime = (e) => {
@@ -196,19 +193,24 @@ const DailySales = () => {
                     <CardHomeDash 
                         icon = 'fa-solid fa-file-invoice-dollar'
                         title = 'Ventas del día'
-                        quantity = { dailySales.length }
+                        quantity = { fullSales.length }
                     />
 
                     <CardHomeDash 
                         icon = 'fa-solid fa-money-bill-trend-up'
                         title = 'Ganancias del día'
-                        quantity = { `$${ totalAmountFoods + totalAmountDrinks }` }
+                        quantity = { `$${ finalAmount }` }
                     />
 
-                    <PieChartDash 
-                        chartData={ chartData } 
-                        title='Ganancias comidas-bebidas del día' 
-                    />
+                    {
+                        !isLoad && 
+
+                        <PieChartDash 
+                            chartData={ chartData } 
+                            title='Ganancias comidas-bebidas del día' 
+                        />
+                    }
+
 
                 </div>
 
@@ -289,4 +291,4 @@ const DailySales = () => {
     )
 }
 
-export default DailySales;
+export default authenticatedRoute( DailySales );

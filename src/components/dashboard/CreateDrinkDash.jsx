@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -8,16 +8,11 @@ import NavBar from './NavBar';
 import authenticatedRoute from '../../auth/AuthenticatedRoute';
 
 
-const EditDrinkDash = () => {
-
-    let { id } = useParams();
-    id = JSON.parse( id );
-
-    let [ isLoad, setLoad ] = useState( true );
-    let [ drink, setDrink ] = useState(0);
+const CreateDrinkDash = () => {
 
     let [ data, setData ] = useState({
         title: '',
+        category: '',
         description: '',
         price: '',
         image: ''
@@ -25,40 +20,13 @@ const EditDrinkDash = () => {
 
     let [ errorsState, setErrorsState ] = useState({
         title: false,
+        category: false,
         description: false,
         price: false,
         image: false
     });
 
     let [ isErrorState, setIsErrorState ] = useState( false );
-
-    useEffect(() => {
-
-        let getDrink = async () => {
-            let drinkToEdit = {};
-    
-            await fetch(`http://localhost:3030/drinks/${ id }`)
-                .then(( response ) => response.json())
-                .then(( data ) => {
-                    drinkToEdit = data.drink;
-                })
-                .catch((e) => console.log(e));
-    
-            setDrink( drinkToEdit );
-    
-            setData({
-                title: drinkToEdit.title,
-                description: drinkToEdit.description,
-                price: drinkToEdit.price,
-                image: drinkToEdit.image
-            });
-    
-            setLoad( false );
-        };
-
-        getDrink();
-
-    }, []);
 
     const handleInput = ( event ) => {
 
@@ -116,6 +84,11 @@ const EditDrinkDash = () => {
             isError = true;
         }
 
+        if ( !data.category.trim() ) {
+            errors.category = 'Debe seleccionar una "Categoría"';
+            isError = true;
+        }
+
         if ( !data.description.trim() ) {
             errors.description = 'El campo "Descripción" no debe estar vacío';
             isError = true;
@@ -135,11 +108,12 @@ const EditDrinkDash = () => {
 
             const formData = new FormData();
             formData.append('title', data.title);
+            formData.append('category', data.category);
             formData.append('description', data.description);
             formData.append('price', data.price.toString());
             formData.append('image', data.image);
             
-            fetch(`http://localhost:3030/drinks/edit/${ drink.id }`, {
+            fetch('http://localhost:3030/drinks/create', {
                 method: "POST",
                 body: formData,
             })
@@ -168,31 +142,13 @@ const EditDrinkDash = () => {
 
             <div className='p-5'>
 
-                <h1 className='d-block w-100 mb-5 pb-3 border-bottom border-3 border-warning'>Editando la bebida: { drink.title }</h1>
+                <h1 className='d-block w-100 mb-5 pb-3 border-bottom border-3 border-warning'>Creando una nueva bebida</h1>
 
                 <Form encType='multipart/form-data' onSubmit={ handleSubmit }>
 
-                    { !isLoad && 
-                        <img src={ `http://localhost:3030/img/drinks/${ drink.image }` } alt={`Imagen de ${ drink.title }`} style={{ width: '250px', boxShadow: '8px 6px 8px rgb(255,193,7)' }} className='rounded mb-3' /> 
-                    }
-
-                    <Form.Group className="col-md-8 mx-auto mb-3">
-                        <Form.Label htmlFor='image' className='d-block text-start fw-bold' style={{ fontSize: '1.25rem' }}>Nueva Imagen: <em className='text-warning fw-normal fst-italic' style={{ fontSize: '0.75rem' }}>(Al editar debe elegir una nueva imagen)</em></Form.Label>
-                        <Form.Control type="file" id="image" name='image' className='bg-transparent border-warning text-light' onChange={ handleInput } onBlur={ handleInput } />
-                        {
-                            errorsState.image &&
-                            <span className='text-danger'>{ errorsState.image }</span>
-                        }
-                    </Form.Group>
-
-                    <Form.Group className="col-md-8 mx-auto mb-3">
-                        <Form.Label htmlFor='id' className='d-block text-start fw-bold' style={{ fontSize: '1.25rem' }}>ID:</Form.Label>
-                        <Form.Control type="text" id="id" name='id' defaultValue={ drink.id } className='bg-transparent border-warning text-light' disabled />
-                    </Form.Group>
-
                     <Form.Group className="col-md-8 mx-auto mb-3">
                         <Form.Label htmlFor='title' className='d-block text-start fw-bold' style={{ fontSize: '1.25rem' }}>Título:</Form.Label>
-                        <Form.Control type="text" id="title" name='title' placeholder="Ej: Red Bull" defaultValue={ drink.title } className='bg-transparent border-warning text-light' onChange={ handleInput } onBlur={ handleInput } />
+                        <Form.Control type="text" id="title" name='title' placeholder="Ej: Red Bull" className='bg-transparent border-warning text-light' onChange={ handleInput } onBlur={ handleInput } />
                         {
                             errorsState.title &&
                             <span className='text-danger'>{ errorsState.title }</span>
@@ -201,12 +157,21 @@ const EditDrinkDash = () => {
 
                     <Form.Group className="col-md-8 mx-auto mb-3">
                         <Form.Label htmlFor='category' className='d-block text-start fw-bold' style={{ fontSize: '1.25rem' }}>Categoría:</Form.Label>
-                        <Form.Control type="text" id="category" name='category' defaultValue={ drink.category } className='bg-transparent border-warning text-light text-capitalize' disabled />
+                        <Form.Select id="category" name='category' className='border-warning text-dark text-capitalize' onChange={ handleInput } onBlur={ handleInput }>
+                            <option value="cocteles">Cocteles</option>
+                            <option value="cervezas">Cervezas</option>
+                            <option value="vinos & espumantes">Vinos & Espumantes</option>
+                            <option value="otras bebidas">Otras Bebidas</option>
+                        </Form.Select>
+                        {
+                            errorsState.category &&
+                            <span className='text-danger'>{ errorsState.category }</span>
+                        }
                     </Form.Group>
 
                     <Form.Group className="col-md-8 mx-auto mb-3">
                         <Form.Label htmlFor='description' className='d-block text-start fw-bold' style={{ fontSize: '1.25rem' }}>Descripción:</Form.Label>
-                        <Form.Control type="text" id="description" name='description' placeholder="Ej: 1 lata" defaultValue={ drink.description } className='bg-transparent border-warning text-light' onChange={ handleInput } onBlur={ handleInput } />
+                        <Form.Control type="text" id="description" name='description' placeholder="Ej: Una lata" className='bg-transparent border-warning text-light' onChange={ handleInput } onBlur={ handleInput } />
                         {
                             errorsState.description &&
                             <span className='text-danger'>{ errorsState.description }</span>
@@ -215,14 +180,23 @@ const EditDrinkDash = () => {
 
                     <Form.Group className="col-md-8 mx-auto mb-3">
                         <Form.Label htmlFor='price' className='d-block text-start fw-bold' style={{ fontSize: '1.25rem' }}>Precio:</Form.Label>
-                        <Form.Control type="number" id="price" name='price' placeholder="Ej: 2000" defaultValue={ drink.price } className='bg-transparent border-warning text-light' onChange={ handleInput } onBlur={ handleInput } />
+                        <Form.Control type="number" id="price" name='price' placeholder="Ej: 2000" className='bg-transparent border-warning text-light' onChange={ handleInput } onBlur={ handleInput } />
                         {
                             errorsState.price &&
                             <span className='text-danger'>{ errorsState.price }</span>
                         }
                     </Form.Group>
 
-                    <Button type='submit' variant='warning' className='fw-bold py-2 mt-4'>Editar bebida</Button>
+                    <Form.Group className="col-md-8 mx-auto mb-3">
+                        <Form.Label htmlFor='image' className='d-block text-start fw-bold' style={{ fontSize: '1.25rem' }}>Imagen:</Form.Label>
+                        <Form.Control type="file" id="image" name='image' className='bg-transparent border-warning text-light' onChange={ handleInput } onBlur={ handleInput } />
+                        {
+                            errorsState.image &&
+                            <span className='text-danger'>{ errorsState.image }</span>
+                        }
+                    </Form.Group>
+
+                    <Button type='submit' variant='warning' className='fw-bold py-2 mt-4'>Crear bebida</Button>
 
                 </Form>
 
@@ -234,4 +208,4 @@ const EditDrinkDash = () => {
     )
 }
 
-export default authenticatedRoute( EditDrinkDash );
+export default authenticatedRoute( CreateDrinkDash );

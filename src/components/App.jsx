@@ -9,9 +9,11 @@ import Login from './dashboard/Login';
 import HomeDash from './dashboard/HomeDash';
 import FoodsDash from './dashboard/FoodsDash';
 import FoodDetailDash from './dashboard/FoodDetailDash';
+import CreateFoodDash from './dashboard/CreateFoodDash';
 import EditFoodDash from './dashboard/EditFoodDash';
 import DrinksDash from './dashboard/DrinksDash';
 import DrinkDetailDash from './dashboard/DrinkDetailDash';
+import CreateDrinkDash from './dashboard/CreateDrinkDash';
 import EditDrinkDash from './dashboard/EditDrinkDash';
 import Sales from './dashboard/Sales';
 import DailySales from './dashboard/DailySales';
@@ -37,9 +39,11 @@ function App() {
         <Route path='/dashboard' element={ <HomeDash/> } />
         <Route path='/dashboard/foods' element={ <FoodsDash /> } />
         <Route path='/dashboard/foods/:id' element={ <FoodDetailDash /> } />
+        <Route path='/dashboard/foods/create' element={ <CreateFoodDash /> } />
         <Route path='/dashboard/foods/edit/:id' element={ <EditFoodDash /> } />
         <Route path='/dashboard/drinks' element={ <DrinksDash /> } />
         <Route path='/dashboard/drinks/:id' element={ <DrinkDetailDash /> } />
+        <Route path='/dashboard/drinks/create' element={ <CreateDrinkDash /> } />
         <Route path='/dashboard/drinks/edit/:id' element={ <EditDrinkDash /> } />
         <Route path='/dashboard/sales' element={ <Sales /> } />
         <Route path='/dashboard/sales/daily' element={ <DailySales /> } />

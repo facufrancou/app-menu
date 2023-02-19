@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 
 import NavBar from './NavBar';
 
-let dataDrinks = require('../../data/menuDrinks.json');
+import authenticatedRoute from '../../auth/AuthenticatedRoute';
 
 
 const DrinkDetailDash = () => {
@@ -18,11 +18,15 @@ const DrinkDetailDash = () => {
 
     useEffect(() => {
 
-        let drinkFromJSON = dataDrinks.filter( drinkJSON => drinkJSON.id === id );
-        setDrink( drinkFromJSON[0] );    
+        fetch(`http://localhost:3030/drinks/${ id }`)
+            .then(( response ) => response.json())
+            .then(( data ) => {
+                setDrink( data.drink );
+            })
+            .catch((e) => console.log(e));
         setLoad( false );
 
-    }, [])
+    }, []);
 
     const navigate = useNavigate();
 
@@ -32,18 +36,14 @@ const DrinkDetailDash = () => {
 
     const unavailableDrink = () => {
         
-        let newJSONDrinks = [];
-
-        dataDrinks.forEach( drinkJSON => {
-            if( drinkJSON.id === drink.id ) {
-                newJSONDrinks.push({
-                    ...drink,
-                    available: false
-                })
-            } else {
-                newJSONDrinks.push( drink )
-            }
+        fetch(`http://localhost:3030/drinks/unavailable/${ id }`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'Application/json',
+            },
+            body: JSON.stringify( drink ),
         })
+            .then(response => response.json())
 
         navigate('/dashboard/drinks');
     };
@@ -62,7 +62,7 @@ const DrinkDetailDash = () => {
 
                     <div className='col-12 col-lg-4 mx-auto'>
                         { !isLoad && 
-                            <img src={ require(`../../assets/${ drink.image }`) } alt={`Imagen de ${ drink.title }`} style={{ width: '100%', maxWidth: '350px' }} className='mb-3' /> 
+                            <img src={ `http://localhost:3030/img/drinks/${ drink.image }` } alt={`Imagen de ${ drink.title }`} style={{ width: '100%', maxWidth: '350px' }} className='mb-3' /> 
                         }
                         <div className='d-flex justify-content-evenly align-items-center mb-4'>
                             <Button variant='warning' className='fw-bold' onClick={ nextPageEdit }>Editar bebida</Button>
@@ -87,4 +87,4 @@ const DrinkDetailDash = () => {
     )
 }
 
-export default DrinkDetailDash;
+export default authenticatedRoute( DrinkDetailDash );
