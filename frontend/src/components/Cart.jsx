@@ -126,6 +126,7 @@ const Cart = () => {
 
     let sendOrder = () => {
 
+<<<<<<< HEAD
         let finalAmount = finalPrice + ( finalPrice * 0.21 );
 
         const formData = new FormData();
@@ -142,6 +143,8 @@ const Cart = () => {
             return response.json()
         });
 
+=======
+>>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
         let foodsWhatsApp = [];
 
         finalFoodsCart.map( ({ title, price, quantity }) => {

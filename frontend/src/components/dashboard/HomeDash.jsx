@@ -1,10 +1,20 @@
+<<<<<<< HEAD
 import { useEffect, useState } from 'react';
+=======
+import { useState } from 'react';
+>>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
 
 import CardHomeDash from './CardHomeDash';
 import ChartHomeDash from './BarChartDash';
 import NavBar from './NavBar';
 
+<<<<<<< HEAD
 import authenticatedRoute from '../../auth/AuthenticatedRoute';
+=======
+let dataDrinks = require('../../data/menuDrinks.json');
+let dataFoods = require('../../data/menuFoods.json');
+let dataSales = require('../../data/sales.json');
+>>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
 
 
 const HomeDash = () => {
@@ -24,6 +34,7 @@ const HomeDash = () => {
     /* const fecha = new Date();
     const mesActual = fecha.getMonth() + 1; */
 
+<<<<<<< HEAD
     let [ numberFoods, setNumberFoods ] = useState( 0 );
     let [ numberDrinks, setNumberDrinks ] = useState( 0 );
     let [ numberClients, setNumberClients ] = useState( 0 );
@@ -136,6 +147,162 @@ const HomeDash = () => {
         getSales();
 
     }, []);
+=======
+    const date = new Date();
+    
+    const [ year, month, day ] = [
+        date.getFullYear(),
+        date.getMonth(),
+        date.getDate()
+    ];
+
+    const actualDate = year + '-' + ( month + 1 ) + '-' + day;
+
+    const dailySales = dataSales.filter( sale => {
+        return sale.date === actualDate;
+    })
+
+    let totalDailyAmount = 0;
+
+    dailySales.forEach( sale => {
+        sale.foods.forEach( food => {
+            totalDailyAmount += food.finalPrice
+        })
+        sale.drinks.forEach( drink => {
+            totalDailyAmount += drink.finalPrice
+        })
+    })
+
+    let arrayClients = [];
+
+    dataSales.forEach( sale => {
+        if( !arrayClients.includes( sale.client ) ){
+            arrayClients.push( sale.client );
+        }
+    })
+
+    let arrayDatesThisWeek = [];
+
+    arrayDatesThisWeek.push( actualDate );
+
+    for ( let i = 0; i < 6; i++ ) {
+        date.setDate( date.getDate() - 1 );
+        
+        let [ year, month, day ] = [
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate()
+        ];
+    
+        let currentDate = year + '-' + ( month + 1 ) + '-' + day;
+
+        arrayDatesThisWeek.push( currentDate );
+    }
+    
+    let weeklySales = dataSales.filter( sale => {
+        return arrayDatesThisWeek.includes( sale.date );
+    });
+
+    arrayDatesThisWeek = arrayDatesThisWeek.sort();
+
+    let finalAmountsWeekly = {};
+
+    arrayDatesThisWeek.map( date  => {
+        finalAmountsWeekly[ date ] = 0;
+    })
+
+    weeklySales.map( sale  => {
+        finalAmountsWeekly[ sale.date ] = finalAmountsWeekly[ sale.date ] + sale.finalAmount;
+    })
+
+    let arrayFinalAmountsWeekly =  Object.values( finalAmountsWeekly );
+
+    let arrayNameDatesThisWeek = [];
+    
+    arrayDatesThisWeek.map( date => {
+
+        let daysWeek = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+
+        let dateChanging = new Date( date );
+        let nameDayWeek = dateChanging.getDay();
+        
+        arrayNameDatesThisWeek.push( daysWeek[ nameDayWeek ] );
+    })
+
+    const [ chartData, setChartData ] = useState({
+        labels: arrayNameDatesThisWeek, 
+        datasets: [{
+            label: "Ganancias",
+            data: arrayFinalAmountsWeekly.map(( data ) => data),
+            backgroundColor: [
+                "#3e4144",
+                "#5e5e5e",
+                "#6f6f6f",
+                "#828282",
+                "#aaaaaa",
+                "#c6c6c6",
+                "#ffffff",
+            ],
+            borderColor: "black",
+            borderWidth: 2
+        }]
+    });
+
+    let finalAmountsMonthly = {
+        1: 0,
+        2: 0,
+        3: 0,
+        4: 0,
+        5: 0,
+        6: 0,
+        7: 0,
+        8: 0,
+        9: 0,
+        10: 0,
+        11: 0,
+        12: 0
+    }
+
+    let annualSales = dataSales.filter( sale => {
+        let dateJSON = new Date( sale.date );
+        let yearJSON = dateJSON.getFullYear();
+
+        return yearJSON === year;
+    })
+
+    annualSales.map(( data ) => {
+        const date = new Date( data.date );
+        const month = date.getMonth() + 1;
+        
+        finalAmountsMonthly[ month ] = finalAmountsMonthly[ month ] + data.finalAmount
+    })
+
+    let arrayFinalAmountsMonthly =  Object.values( finalAmountsMonthly );
+
+    const [ chartDataMonthly, setChartDataMonthly ] = useState({
+        labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'], 
+        datasets: [{
+            label: "Ganancias",
+            data: arrayFinalAmountsMonthly.map(( data ) => data),
+            backgroundColor: [
+                "#666f88",
+                "#788199",
+                "#8990a2",
+                "#a3a8b7",
+                "#b5bac9",
+                "#c6c6c6",
+                "#aaaaaa",
+                "#828282",
+                "#6f6f6f",
+                "#5e5e5e",
+                "#45484a",
+                "#3e4144"
+            ],
+            borderColor: "black",
+            borderWidth: 2
+        }]
+    });
+>>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
 
     return (
 
@@ -151,41 +318,62 @@ const HomeDash = () => {
                     <CardHomeDash 
                         icon = 'fa-solid fa-burger'
                         title = 'Comidas disponibles'
+<<<<<<< HEAD
                         quantity = { numberFoods }
+=======
+                        quantity = { dataFoods.length }
+>>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
                         link = '/foods'
                     />
 
                     <CardHomeDash 
                         icon = 'fa-solid fa-wine-glass'
                         title = 'Bebidas disponibles'
+<<<<<<< HEAD
                         quantity = { numberDrinks }
+=======
+                        quantity = { dataDrinks.length }
+>>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
                         link = '/drinks'
                     />
 
                     <CardHomeDash 
                         icon = 'fa-solid fa-users'
                         title = 'Total de Clientes'
+<<<<<<< HEAD
                         quantity = { numberClients }
+=======
+                        quantity = { arrayClients.length }
+>>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
                         link = '/sales'
                     />
 
                     <CardHomeDash 
                         icon = 'fa-solid fa-file-invoice-dollar'
                         title = 'Ventas del día'
+<<<<<<< HEAD
                         quantity = { numberDailySales }
+=======
+                        quantity = { dailySales.length }
+>>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
                         link = '/sales/daily'
                     />
 
                     <CardHomeDash 
                         icon = 'fa-solid fa-money-bill-trend-up'
                         title = 'Ganancias del día'
+<<<<<<< HEAD
                         quantity = { `$${ totalAmountDailySales }` }
+=======
+                        quantity = { `$${ totalDailyAmount }` }
+>>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
                         link = '/sales/daily'
                     />
 
                 </div>
 
                 <div>
+<<<<<<< HEAD
 
                     {
                         !isLoad &&
@@ -197,6 +385,11 @@ const HomeDash = () => {
                         </>
                     }
 
+=======
+                    <ChartHomeDash chartData={ chartData } title='Ganancias ventas de esta semana' />
+
+                    <ChartHomeDash chartData={ chartDataMonthly } title='Ganancias ventas en el año' />
+>>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
                 </div>
 
             </div>
@@ -205,4 +398,8 @@ const HomeDash = () => {
     )
 }
 
+<<<<<<< HEAD
 export default authenticatedRoute( HomeDash );
+=======
+export default HomeDash;
+>>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231

@@ -5,7 +5,11 @@ import Button from 'react-bootstrap/Button';
 
 import NavBar from './NavBar';
 
+<<<<<<< HEAD
 import authenticatedRoute from '../../auth/AuthenticatedRoute';
+=======
+let dataDrinks = require('../../data/menuDrinks.json');
+>>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
 
 
 const DrinkDetailDash = () => {
@@ -18,6 +22,7 @@ const DrinkDetailDash = () => {
 
     useEffect(() => {
 
+<<<<<<< HEAD
         fetch(`http://localhost:3030/drinks/${ id }`)
             .then(( response ) => response.json())
             .then(( data ) => {
@@ -27,6 +32,13 @@ const DrinkDetailDash = () => {
         setLoad( false );
 
     }, []);
+=======
+        let drinkFromJSON = dataDrinks.filter( drinkJSON => drinkJSON.id === id );
+        setDrink( drinkFromJSON[0] );    
+        setLoad( false );
+
+    }, [])
+>>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
 
     const navigate = useNavigate();
 
@@ -36,6 +48,7 @@ const DrinkDetailDash = () => {
 
     const unavailableDrink = () => {
         
+<<<<<<< HEAD
         fetch(`http://localhost:3030/drinks/unavailable/${ id }`, {
             method: 'POST',
             headers: {
@@ -44,6 +57,20 @@ const DrinkDetailDash = () => {
             body: JSON.stringify( drink ),
         })
             .then(response => response.json())
+=======
+        let newJSONDrinks = [];
+
+        dataDrinks.forEach( drinkJSON => {
+            if( drinkJSON.id === drink.id ) {
+                newJSONDrinks.push({
+                    ...drink,
+                    available: false
+                })
+            } else {
+                newJSONDrinks.push( drink )
+            }
+        })
+>>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
 
         navigate('/dashboard/drinks');
     };
@@ -62,7 +89,11 @@ const DrinkDetailDash = () => {
 
                     <div className='col-12 col-lg-4 mx-auto'>
                         { !isLoad && 
+<<<<<<< HEAD
                             <img src={ `http://localhost:3030/img/drinks/${ drink.image }` } alt={`Imagen de ${ drink.title }`} style={{ width: '100%', maxWidth: '350px' }} className='mb-3' /> 
+=======
+                            <img src={ require(`../../assets/${ drink.image }`) } alt={`Imagen de ${ drink.title }`} style={{ width: '100%', maxWidth: '350px' }} className='mb-3' /> 
+>>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
                         }
                         <div className='d-flex justify-content-evenly align-items-center mb-4'>
                             <Button variant='warning' className='fw-bold' onClick={ nextPageEdit }>Editar bebida</Button>
@@ -87,4 +118,8 @@ const DrinkDetailDash = () => {
     )
 }
 
+<<<<<<< HEAD
 export default authenticatedRoute( DrinkDetailDash );
+=======
+export default DrinkDetailDash;
+>>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231

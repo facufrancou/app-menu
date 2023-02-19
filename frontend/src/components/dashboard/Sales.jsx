@@ -8,10 +8,17 @@ import Pagination from 'react-bootstrap/Pagination';
 
 import NavBar from './NavBar';
 
+<<<<<<< HEAD
 import authenticatedRoute from '../../auth/AuthenticatedRoute';
 
 import '../../styles/dashboard.css';
 
+=======
+import '../../styles/dashboard.css';
+
+let dataSales = require('../../data/sales.json');
+
+>>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
 
 const Sales = () => {
     
@@ -26,6 +33,7 @@ const Sales = () => {
     
     useEffect(() => {
 
+<<<<<<< HEAD
         const getSales = async () => {
 
             let listSales = [];
@@ -47,6 +55,16 @@ const Sales = () => {
       
     }, []);
 
+=======
+        let firstSales = dataSales.slice(0, 10);
+        setActiveSales( firstSales );
+        setFullSales( dataSales );
+      
+    }, []);
+
+    dataSales = dataSales.sort( ( a, b ) => b.id - a.id );
+
+>>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
     const searchRealTime = (e) => {
         setSearch( e.target.value );
         filter( e.target.value );
@@ -244,4 +262,8 @@ const Sales = () => {
     )
 }
 
+<<<<<<< HEAD
 export default authenticatedRoute( Sales );
+=======
+export default Sales;
+>>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231

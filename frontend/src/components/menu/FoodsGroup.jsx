@@ -1,8 +1,12 @@
+<<<<<<< HEAD
 import { useEffect, useState } from 'react';
+=======
+>>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
 import FoodItem from './FoodItem';
 
 import '../../styles/foodsGroup.css';
 
+<<<<<<< HEAD
 
 const FoodsGroup = ({ title }) => {
 
@@ -31,6 +35,16 @@ const FoodsGroup = ({ title }) => {
         getFoods();
 
     }, []);
+=======
+let dataFoods = require('../../data/menuFoods.json');
+
+
+const FoodsGroup = ({ title }) => {
+
+    let foodsFilter = dataFoods.filter( food => {
+        return food.category.toLowerCase() === title.toLowerCase();
+    });
+>>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
 
     let iconCategory = '';
 
@@ -63,7 +77,11 @@ const FoodsGroup = ({ title }) => {
                 whiteSpace: 'nowrap',
                 padding: '1rem',
             }}>
+<<<<<<< HEAD
                 { foods.map( ({ id, title, price, description, image }) => {
+=======
+                { foodsFilter.map( ({ id, title, price, description, image }) => {
+>>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
                     return <FoodItem id={ id } 
                                     title={ title } 
                                     price={ price } 

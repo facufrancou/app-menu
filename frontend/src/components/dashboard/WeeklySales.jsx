@@ -7,6 +7,7 @@ import Table from 'react-bootstrap/Table';
 import Pagination from 'react-bootstrap/Pagination';
 
 import CardHomeDash from './CardHomeDash';
+<<<<<<< HEAD
 import PieChartDash from './PieChartDash';
 import NavBar from './NavBar';
 
@@ -17,6 +18,76 @@ import '../../styles/dashboard.css';
 
 const WeeklySales = () => {
 
+=======
+import PieChartHomeDash from './PieChartDash';
+import NavBar from './NavBar';
+
+import '../../styles/dashboard.css';
+
+let dataSales = require('../../data/sales.json');
+
+
+const WeeklySales = () => {
+
+    let arrayDates = [];
+    let date = new Date();
+    let [ year, month, day ] = [
+        date.getFullYear(),
+        date.getMonth(),
+        date.getDate()
+    ];
+    let actualDate = year + '-' + ( month + 1 ) + '-' + day;
+    arrayDates.push( actualDate );
+    
+    for ( let i = 0; i < 6; i++ ) {
+        date.setDate( date.getDate() - 1 );
+        
+        let [ year, month, day ] = [
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate()
+        ];
+    
+        let currentDate = year + '-' + ( month + 1 ) + '-' + day;
+
+        arrayDates.push( currentDate );
+    }
+
+    let weeklySales = dataSales.filter( sale => {
+        return arrayDates.includes( sale.date );
+    })
+
+    weeklySales = weeklySales.sort( ( a, b ) => b.id - a.id );
+
+    let totalAmountFoods = 0;
+    let totalAmountDrinks = 0;
+
+    weeklySales.forEach( sale => {
+        sale.foods.forEach( food => {
+            totalAmountFoods += food.finalPrice
+        })
+        sale.drinks.forEach( drink => {
+            totalAmountDrinks += drink.finalPrice
+        })
+    })
+
+    const arrayItemsDataChart = [ totalAmountFoods, totalAmountDrinks ];
+
+    const [ chartData, setChartData ] = useState({
+        labels: ['Comidas', 'Bebidas'], 
+        datasets: [{
+            label: "Ganancias",
+            data: arrayItemsDataChart.map( amount => amount ),
+            backgroundColor: [
+                "#AAAAAA",
+                "#ECF0F1"
+            ],
+            borderColor: "black",
+            borderWidth: 2,
+        }]
+    });
+
+>>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
     let [ fullSales, setFullSales ] = useState( [] );
     let [ activeSales, setActiveSales ] = useState( [] );
     let [ activeSlice, setActiveSlice ] = useState({
@@ -26,6 +97,7 @@ const WeeklySales = () => {
     let [ activePage, setActivePage ] = useState( 1 );
     let [ search, setSearch ] = useState('');
 
+<<<<<<< HEAD
     let [ finalAmount, setFinalAmount ] = useState(0);
     let [ chartData, setChartData ] = useState({});
     let [ isLoad, setLoad ] = useState( true );
@@ -69,6 +141,12 @@ const WeeklySales = () => {
         
         getSales();
       
+=======
+    useEffect(() => {
+        let firstSales = weeklySales.slice(0, 10);
+        setActiveSales( firstSales );
+        setFullSales( weeklySales );
+>>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
     }, []);
 
     const searchRealTime = (e) => {
@@ -193,12 +271,17 @@ const WeeklySales = () => {
                     <CardHomeDash 
                         icon = 'fa-solid fa-file-invoice-dollar'
                         title = 'Ventas de la semana'
+<<<<<<< HEAD
                         quantity = { fullSales.length }
+=======
+                        quantity = { weeklySales.length }
+>>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
                     />
 
                     <CardHomeDash 
                         icon = 'fa-solid fa-money-bill-trend-up'
                         title = 'Ganancias de la semana'
+<<<<<<< HEAD
                         quantity = { `$${ finalAmount }` }
                     />
 
@@ -210,6 +293,15 @@ const WeeklySales = () => {
                             title='Ganancias comidas-bebidas de la semana' 
                         />
                     }
+=======
+                        quantity = { `$${ totalAmountFoods + totalAmountDrinks }` }
+                    />
+
+                    <PieChartHomeDash 
+                        chartData={ chartData } 
+                        title='Ganancias comidas-bebidas de la semana' 
+                    />
+>>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
 
                 </div>
 
@@ -290,4 +382,8 @@ const WeeklySales = () => {
     )
 }
 
+<<<<<<< HEAD
 export default authenticatedRoute( WeeklySales );
+=======
+export default WeeklySales;
+>>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
