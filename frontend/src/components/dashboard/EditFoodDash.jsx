@@ -1,19 +1,11 @@
 import { useState, useEffect } from 'react';
-<<<<<<< HEAD
 import { useNavigate, useParams } from 'react-router-dom';
-=======
-import { useParams } from 'react-router-dom';
->>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import NavBar from './NavBar';
 
-<<<<<<< HEAD
 import authenticatedRoute from '../../auth/AuthenticatedRoute';
-=======
-let dataFoods = require('../../data/menuFoods.json');
->>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
 
 
 const EditFoodDash = () => {
@@ -24,7 +16,6 @@ const EditFoodDash = () => {
     let [ isLoad, setLoad ] = useState( true );
     let [ food, setFood ] = useState(0);
 
-<<<<<<< HEAD
     let [ data, setData ] = useState({
         title: '',
         description: '',
@@ -168,15 +159,6 @@ const EditFoodDash = () => {
         }
 
     }
-=======
-    useEffect(() => {
-
-        let foodFromJSON = dataFoods.filter( foodJSON => foodJSON.id === id );
-        setFood( foodFromJSON[0] );
-        setLoad( false );
-
-    }, [])
->>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
 
     return (
 
@@ -188,7 +170,6 @@ const EditFoodDash = () => {
 
                 <h1 className='d-block w-100 mb-5 pb-3 border-bottom border-3 border-warning'>Editando la comida: { food.title }</h1>
 
-<<<<<<< HEAD
                 <Form encType='multipart/form-data' onSubmit={ handleSubmit }>
 
                     { !isLoad && 
@@ -242,40 +223,6 @@ const EditFoodDash = () => {
                     </Form.Group>
 
                     <Button type='submit' variant='warning' className='fw-bold py-2 mt-4'>Editar comida</Button>
-=======
-                <Form>
-
-                    { !isLoad && 
-                        <img src={ require(`../../assets/${ food.image }`) } alt={`Imagen de ${ food.title }`} style={{ width: '250px', boxShadow: '8px 6px 8px rgb(255,193,7)' }} className='rounded mb-3' /> 
-                    }
-
-                    <Form.Group className="col-md-8 mx-auto mb-3">
-                        <Form.Label for='id' className='d-block text-start fw-bold' style={{ fontSize: '1.25rem' }}>ID:</Form.Label>
-                        <Form.Control type="text" id="id" placeholder="Ej: Del Campo" defaultValue={ food.id } className='bg-transparent border-warning text-light' disabled />
-                    </Form.Group>
-
-                    <Form.Group className="col-md-8 mx-auto mb-3">
-                        <Form.Label for='title' className='d-block text-start fw-bold' style={{ fontSize: '1.25rem' }}>Título:</Form.Label>
-                        <Form.Control type="text" id="title" placeholder="Ej: Del Campo" defaultValue={ food.title } className='bg-transparent border-warning text-light' />
-                    </Form.Group>
-
-                    <Form.Group className="col-md-8 mx-auto mb-3">
-                        <Form.Label for='category' className='d-block text-start fw-bold' style={{ fontSize: '1.25rem' }}>Categoría:</Form.Label>
-                        <Form.Control type="text" id="category" placeholder="Ej: Del Campo" defaultValue={ food.category } className='bg-transparent border-warning text-light text-capitalize' />
-                    </Form.Group>
-
-                    <Form.Group className="col-md-8 mx-auto mb-3">
-                        <Form.Label for='description' className='d-block text-start fw-bold' style={{ fontSize: '1.25rem' }}>Descripción:</Form.Label>
-                        <Form.Control type="text" id="description" placeholder="Ej: Del Campo" defaultValue={ food.description } className='bg-transparent border-warning text-light text-capitalize' />
-                    </Form.Group>
-
-                    <Form.Group className="col-md-8 mx-auto mb-3">
-                        <Form.Label for='price' className='d-block text-start fw-bold' style={{ fontSize: '1.25rem' }}>Precio:</Form.Label>
-                        <Form.Control type="text" id="price" placeholder="Ej: Del Campo" defaultValue={ food.price } className='bg-transparent border-warning text-light text-capitalize' />
-                    </Form.Group>
-
-                    <Button variant='warning' className='fw-bold py-2 mt-4'>Editar comida</Button>
->>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
 
                 </Form>
             </div>
@@ -286,8 +233,4 @@ const EditFoodDash = () => {
     )
 }
 
-<<<<<<< HEAD
 export default authenticatedRoute( EditFoodDash );
-=======
-export default EditFoodDash;
->>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231

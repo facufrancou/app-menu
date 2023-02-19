@@ -5,11 +5,7 @@ import Button from 'react-bootstrap/Button';
 
 import NavBar from './NavBar';
 
-<<<<<<< HEAD
 import authenticatedRoute from '../../auth/AuthenticatedRoute';
-=======
-let dataFoods = require('../../data/menuFoods.json');
->>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
 
 
 const FoodDetailDash = () => {
@@ -22,7 +18,6 @@ const FoodDetailDash = () => {
 
     useEffect(() => {
 
-<<<<<<< HEAD
         fetch(`http://localhost:3030/foods/${ id }`)
             .then(( response ) => response.json())
             .then(( data ) => {
@@ -32,13 +27,6 @@ const FoodDetailDash = () => {
         setLoad( false );
 
     }, []);
-=======
-        let foodFromJSON = dataFoods.filter( foodJSON => foodJSON.id === id );
-        setFood( foodFromJSON[0] );    
-        setLoad( false );
-
-    }, [])
->>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
 
     const navigate = useNavigate();
 
@@ -48,7 +36,6 @@ const FoodDetailDash = () => {
 
     const unavailableFood = () => {
         
-<<<<<<< HEAD
         fetch(`http://localhost:3030/foods/unavailable/${ id }`, {
             method: 'POST',
             headers: {
@@ -57,20 +44,6 @@ const FoodDetailDash = () => {
             body: JSON.stringify( food ),
         })
             .then(response => response.json())
-=======
-        let newJSONFoods = [];
-
-        dataFoods.forEach( foodJSON => {
-            if( foodJSON.id === food.id ) {
-                newJSONFoods.push({
-                    ...food,
-                    available: false
-                })
-            } else {
-                newJSONFoods.push( food )
-            }
-        })
->>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
 
         navigate('/dashboard/foods');
     };
@@ -89,11 +62,7 @@ const FoodDetailDash = () => {
 
                     <div className='col-12 col-lg-4 mx-auto'>
                         { !isLoad && 
-<<<<<<< HEAD
                             <img src={ `http://localhost:3030/img/foods/${ food.image }` } alt={`Imagen de ${ food.title }`} style={{ width: '100%', maxWidth: '350px' }} className='mb-3' /> 
-=======
-                            <img src={ require(`../../assets/${ food.image }`) } alt={`Imagen de ${ food.title }`} style={{ width: '100%', maxWidth: '350px' }} className='mb-3' /> 
->>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
                         }
                         <div className='d-flex justify-content-evenly align-items-center mb-4'>
                             <Button variant='warning' className='fw-bold' onClick={ nextPageEdit }>Editar comida</Button>
@@ -118,8 +87,4 @@ const FoodDetailDash = () => {
     )
 }
 
-<<<<<<< HEAD
 export default authenticatedRoute( FoodDetailDash );
-=======
-export default FoodDetailDash;
->>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231

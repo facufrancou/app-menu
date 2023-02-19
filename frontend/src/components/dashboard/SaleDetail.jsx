@@ -4,12 +4,8 @@ import { useParams } from 'react-router-dom';
 import NavBar from './NavBar';
 import SaleDetailItem from './SaleDetailItem';
 
-<<<<<<< HEAD
 import authenticatedRoute from '../../auth/AuthenticatedRoute';
 
-=======
-let dataSales = require('../../data/sales.json');
->>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
 
 const SaleDetail = () => {
 
@@ -21,7 +17,6 @@ const SaleDetail = () => {
 
     useEffect(() => {
 
-<<<<<<< HEAD
         const getSales = async () => {
 
             await fetch(`http://localhost:3030/sales/${ id }`)
@@ -37,12 +32,6 @@ const SaleDetail = () => {
 
         getSales();
         
-=======
-        let saleFromJSON = dataSales.filter( saleJSON => saleJSON.id === id );
-        setSale( saleFromJSON[0] );
-        setLoad( false );
-
->>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
     }, []);
 
     return (
@@ -123,8 +112,4 @@ const SaleDetail = () => {
     )
 }
 
-<<<<<<< HEAD
 export default authenticatedRoute( SaleDetail );
-=======
-export default SaleDetail;
->>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231

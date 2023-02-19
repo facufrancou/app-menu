@@ -10,7 +10,6 @@ import CardHomeDash from './CardHomeDash';
 import PieChartDash from './PieChartDash';
 import NavBar from './NavBar';
 
-<<<<<<< HEAD
 import authenticatedRoute from '../../auth/AuthenticatedRoute';
 
 import '../../styles/dashboard.css';
@@ -21,57 +20,6 @@ const MonthlySales = () => {
     let date = new Date();
     let arrayMonths = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
     let actualMonth = arrayMonths[ date.getMonth() ];
-=======
-import '../../styles/dashboard.css';
-
-let dataSales = require('../../data/sales.json');
-
-
-const MonthlySales = () => {
-
-    let actualDate = new Date();
-    let actualMonth = actualDate.getMonth();
-    let arrayMonths = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
-    actualDate = actualDate.getFullYear() + '-' + ( actualMonth + 1 );
-
-    let monthlySales = dataSales.filter( sale => {
-
-        let dateJSON = new Date( sale.date );
-        dateJSON = dateJSON.getFullYear() + '-' + ( dateJSON.getMonth() + 1 );
-
-        return dateJSON === actualDate;
-    })
-
-    monthlySales = monthlySales.sort( ( a, b ) => b.id - a.id );
-
-    let totalAmountFoods = 0;
-    let totalAmountDrinks = 0;
-
-    monthlySales.forEach( sale => {
-        sale.foods.forEach( food => {
-            totalAmountFoods += food.finalPrice
-        })
-        sale.drinks.forEach( drink => {
-            totalAmountDrinks += drink.finalPrice
-        })
-    })
-
-    const arrayItemsDataChart = [ totalAmountFoods, totalAmountDrinks ];
-
-    const [ chartData, setChartData ] = useState({
-        labels: ['Comidas', 'Bebidas'], 
-        datasets: [{
-            label: "Ganancias",
-            data: arrayItemsDataChart.map( amount => amount ),
-            backgroundColor: [
-                "#AAAAAA",
-                "#ECF0F1"
-            ],
-            borderColor: "black",
-            borderWidth: 2,
-        }]
-    });
->>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
 
     let [ fullSales, setFullSales ] = useState( [] );
     let [ activeSales, setActiveSales ] = useState( [] );
@@ -82,7 +30,6 @@ const MonthlySales = () => {
     let [ activePage, setActivePage ] = useState( 1 );
     let [ search, setSearch ] = useState('');
 
-<<<<<<< HEAD
     let [ finalAmount, setFinalAmount ] = useState(0);
     let [ chartData, setChartData ] = useState({});
     let [ isLoad, setLoad ] = useState( true );
@@ -126,12 +73,6 @@ const MonthlySales = () => {
         
         getSales();
       
-=======
-    useEffect(() => {
-        let firstSales = monthlySales.slice(0, 10);
-        setActiveSales( firstSales );
-        setFullSales( monthlySales );
->>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
     }, []);
 
     const searchRealTime = (e) => {
@@ -249,28 +190,19 @@ const MonthlySales = () => {
             
             <div className='py-5 px-4'>
 
-<<<<<<< HEAD
                 <h1>Ventas { actualMonth } - Restaurante Saturno</h1>
-=======
-                <h1>Ventas { arrayMonths[ actualMonth ] } - Restaurante Saturno</h1>
->>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
 
                 <div className='d-flex flex-wrap justify-content-between align-items-center mt-5 mb-3'>
 
                     <CardHomeDash 
                         icon = 'fa-solid fa-file-invoice-dollar'
                         title = 'Ventas del mes'
-<<<<<<< HEAD
                         quantity = { fullSales.length }
-=======
-                        quantity = { monthlySales.length }
->>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
                     />
 
                     <CardHomeDash 
                         icon = 'fa-solid fa-money-bill-trend-up'
                         title = 'Ganancias del mes'
-<<<<<<< HEAD
                         quantity = { `$${ finalAmount }` }
                     />
 
@@ -282,15 +214,6 @@ const MonthlySales = () => {
                             title='Ganancias comidas-bebidas del mes' 
                         />
                     }
-=======
-                        quantity = { `$${ totalAmountFoods + totalAmountDrinks }` }
-                    />
-
-                    <PieChartDash 
-                        chartData={ chartData } 
-                        title='Ganancias comidas-bebidas del mes' 
-                    />
->>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
 
                 </div>
 
@@ -371,8 +294,4 @@ const MonthlySales = () => {
     )
 }
 
-<<<<<<< HEAD
 export default authenticatedRoute( MonthlySales );
-=======
-export default MonthlySales;
->>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231

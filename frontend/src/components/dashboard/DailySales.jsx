@@ -10,7 +10,6 @@ import CardHomeDash from './CardHomeDash';
 import PieChartDash from './PieChartDash';
 import NavBar from './NavBar';
 
-<<<<<<< HEAD
 import authenticatedRoute from '../../auth/AuthenticatedRoute';
 
 import '../../styles/dashboard.css';
@@ -18,57 +17,6 @@ import '../../styles/dashboard.css';
 
 const DailySales = () => {
 
-=======
-import '../../styles/dashboard.css';
-
-let dataSales = require('../../data/sales.json');
-
-
-const DailySales = () => {
-
-    const date = new Date();
-    
-    const [ year, month, day ] = [
-        date.getFullYear(),
-        date.getMonth(),
-        date.getDate()
-    ];
-
-    const actualDate = year + '-' + ( month + 1 ) + '-' + day;
-
-    const dailySales = dataSales.filter( sale => {
-        return sale.date === actualDate;
-    })
-
-    let totalAmountFoods = 0;
-    let totalAmountDrinks = 0;
-
-    dailySales.forEach( sale => {
-        sale.foods.forEach( food => {
-            totalAmountFoods += food.finalPrice
-        })
-        sale.drinks.forEach( drink => {
-            totalAmountDrinks += drink.finalPrice
-        })
-    })
-
-    const arrayItemsDataChart = [ totalAmountFoods, totalAmountDrinks ];
-
-    const [ chartData, setChartData ] = useState({
-        labels: ['Comidas', 'Bebidas'], 
-        datasets: [{
-            label: "Ganancias",
-            data: arrayItemsDataChart.map( amount => amount ),
-            backgroundColor: [
-                "#AAAAAA",
-                "#ECF0F1"
-            ],
-            borderColor: "black",
-            borderWidth: 2,
-        }]
-    });
-
->>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
     let [ fullSales, setFullSales ] = useState( [] );
     let [ activeSales, setActiveSales ] = useState( [] );
     let [ activeSlice, setActiveSlice ] = useState({
@@ -77,7 +25,6 @@ const DailySales = () => {
     });
     let [ activePage, setActivePage ] = useState( 1 );
     let [ search, setSearch ] = useState('');
-<<<<<<< HEAD
 
     let [ finalAmount, setFinalAmount ] = useState(0);
     let [ chartData, setChartData ] = useState({});
@@ -122,13 +69,6 @@ const DailySales = () => {
         
         getSales();
       
-=======
-    
-    useEffect(() => {
-        let firstSales = dailySales.slice(0, 10);
-        setActiveSales( firstSales );
-        setFullSales( dailySales );
->>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
     }, []);
 
     const searchRealTime = (e) => {
@@ -253,17 +193,12 @@ const DailySales = () => {
                     <CardHomeDash 
                         icon = 'fa-solid fa-file-invoice-dollar'
                         title = 'Ventas del día'
-<<<<<<< HEAD
                         quantity = { fullSales.length }
-=======
-                        quantity = { dailySales.length }
->>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
                     />
 
                     <CardHomeDash 
                         icon = 'fa-solid fa-money-bill-trend-up'
                         title = 'Ganancias del día'
-<<<<<<< HEAD
                         quantity = { `$${ finalAmount }` }
                     />
 
@@ -276,15 +211,6 @@ const DailySales = () => {
                         />
                     }
 
-=======
-                        quantity = { `$${ totalAmountFoods + totalAmountDrinks }` }
-                    />
-
-                    <PieChartDash 
-                        chartData={ chartData } 
-                        title='Ganancias comidas-bebidas del día' 
-                    />
->>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
 
                 </div>
 
@@ -365,8 +291,4 @@ const DailySales = () => {
     )
 }
 
-<<<<<<< HEAD
 export default authenticatedRoute( DailySales );
-=======
-export default DailySales;
->>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231

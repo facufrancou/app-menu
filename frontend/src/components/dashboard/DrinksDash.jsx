@@ -1,27 +1,18 @@
-<<<<<<< HEAD
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
-=======
-import { Link } from 'react-router-dom';
->>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
 import Table from 'react-bootstrap/Table';
 
 import NavBar from './NavBar';
 
-<<<<<<< HEAD
 import authenticatedRoute from '../../auth/AuthenticatedRoute';
-=======
-let dataDrinks = require('../../data/menuDrinks.json');
->>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
 
 
 const DrinksDash = () => {
 
-<<<<<<< HEAD
     let [ drinks, setDrinks ] = useState( [] );
     let [ activeDrinks, setActiveDrinks ] = useState( [] );
 
@@ -72,8 +63,6 @@ const DrinksDash = () => {
         navigate('/dashboard/drinks/create');
     }
 
-=======
->>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
     return (
 
         <>
@@ -83,7 +72,6 @@ const DrinksDash = () => {
             <div className='py-5 px-4'>
 
                 <h1 className='mb-4'>Lista de bebidas</h1>
-<<<<<<< HEAD
 
                 <Button className='bg-transparent border-warning text-warning fs-5 fw-bold py-2 px-4 mb-4' onClick={ goCreatePage }>Crear bebida</Button>
                 
@@ -93,8 +81,6 @@ const DrinksDash = () => {
                     </InputGroup.Text>
                     <Form.Control />
                 </InputGroup>
-=======
->>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
                 
                 <Table striped bordered hover className='border-warning'>
                     <thead className='bg-warning border-text'>
@@ -109,11 +95,7 @@ const DrinksDash = () => {
                         </tr>
                     </thead>
                     <tbody>
-<<<<<<< HEAD
                         { activeDrinks.map( ( drink, i ) => {
-=======
-                        { dataDrinks.map( ( drink, i ) => {
->>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
                             return (
                                 <tr key={ i }>
                                     <td className='text-light'>{ drink.id }</td>
@@ -148,8 +130,4 @@ const DrinksDash = () => {
     )
 }
 
-<<<<<<< HEAD
 export default authenticatedRoute( DrinksDash );
-=======
-export default DrinksDash;
->>>>>>> 0d48d105ed5619d292448de499f5236b7b3dd231
